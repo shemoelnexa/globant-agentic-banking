@@ -288,19 +288,15 @@
        approved/licensed photo is set via inline --gb-lp-img.
        NO AI-generated / unlicensed imagery (brand hard rule).
        ========================================================= */
-    .gb-lp-imgband{ position:relative; overflow:hidden; isolation:isolate; color:#fff; }
+    .gb-lp-imgband{ position:relative; overflow:hidden; isolation:isolate; color:#fff;
+      /* branded gradient shown only when no photo is set via --gb-lp-img */
+      --gb-lp-fallback:radial-gradient(85% 95% at 78% 28%,rgba(56,239,160,.24),transparent 60%),radial-gradient(70% 80% at 8% 92%,rgba(99,227,207,.16),transparent 55%),linear-gradient(120deg,#00292E 0%,#063238 55%,#001a1e 100%); }
     .gb-lp-imgband .gb-lp-imgbg{ position:absolute; inset:0; z-index:-2; background-color:var(--navy);
-      background-image:var(--gb-lp-img,none); background-size:cover; background-position:center; }
-    /* branded art fallback (visible when no photo is supplied) */
-    .gb-lp-imgband .gb-lp-imgbg::after{ content:""; position:absolute; inset:0;
-      background:
-        radial-gradient(85% 95% at 78% 28%, rgba(56,239,160,.24), transparent 60%),
-        radial-gradient(70% 80% at 8% 92%, rgba(99,227,207,.16), transparent 55%),
-        linear-gradient(120deg,#00292E 0%,#063238 55%,#001a1e 100%); }
+      background-image:var(--gb-lp-img,var(--gb-lp-fallback)); background-size:cover; background-position:center; }
     /* legibility scrim over whatever sits behind the text */
     .gb-lp-imgband .gb-lp-scrim{ position:absolute; inset:0; z-index:-1;
-      background:linear-gradient(90deg, rgba(0,18,21,.86) 0%, rgba(0,18,21,.55) 46%, rgba(0,18,21,.12) 100%); }
-    .gb-lp-imgband.gb-lp-center .gb-lp-scrim{ background:linear-gradient(180deg, rgba(0,18,21,.42), rgba(0,18,21,.72)); }
+      background:linear-gradient(90deg, rgba(0,18,21,.88) 0%, rgba(0,18,21,.58) 46%, rgba(0,18,21,.18) 100%); }
+    .gb-lp-imgband.gb-lp-center .gb-lp-scrim{ background:linear-gradient(180deg, rgba(0,18,21,.58) 0%, rgba(0,18,21,.5) 40%, rgba(0,18,21,.8) 100%); }
     .gb-lp-imgband .gb-lp-bandarrow{ position:absolute; right:-3%; top:50%; transform:translateY(-50%);
       width:46%; max-width:660px; aspect-ratio:74/108; color:rgba(191,215,50,.12); fill:currentColor; z-index:-1; pointer-events:none; }
     /* tiny corner marker so reviewers know this is an image slot (remove for production) */
@@ -369,7 +365,7 @@
       <!-- ============ §1 HERO ============ -->
       <!-- IMAGE SLOT: add an approved/licensed photo via inline style, e.g.
            style="--gb-lp-img:url('assets/img/hero.jpg')" — branded art shows until then -->
-      <section class="gb-lp-section gb-lp-hero gb-lp-imgband" aria-labelledby="gb-lp-hero-h">
+      <section class="gb-lp-section gb-lp-hero gb-lp-imgband" aria-labelledby="gb-lp-hero-h" style="--gb-lp-img:url('assets/img/hero.jpg')">
         <div class="gb-lp-imgbg"></div>
         <div class="gb-lp-scrim"></div>
         <svg class="gb-lp-bandarrow" aria-hidden="true"><use href="#gb-lp-arrow"/></svg>
@@ -470,7 +466,7 @@
 
       <!-- ============ §3 WEALTH ============ -->
       <!-- IMAGE SLOT: style="--gb-lp-img:url('assets/img/wealth.jpg')" -->
-      <section id="gb-lp-wealth" class="gb-lp-section gb-lp-imgband" aria-labelledby="gb-lp-wealth-h">
+      <section id="gb-lp-wealth" class="gb-lp-section gb-lp-imgband" aria-labelledby="gb-lp-wealth-h" style="--gb-lp-img:url('assets/img/wealth.jpg')">
         <div class="gb-lp-imgbg"></div>
         <div class="gb-lp-scrim"></div>
         <span class="gb-lp-imgtag" aria-hidden="true">Image slot · licensed photo</span>
@@ -580,7 +576,7 @@
 
       <!-- ============ §7 FINAL CTA + FOOTER (navy) ============ -->
       <!-- IMAGE SLOT: style="--gb-lp-img:url('assets/img/cta.jpg')" -->
-      <section id="gb-lp-contact" class="gb-lp-section gb-lp-cta-sec gb-lp-imgband gb-lp-center" aria-labelledby="gb-lp-cta-h">
+      <section id="gb-lp-contact" class="gb-lp-section gb-lp-cta-sec gb-lp-imgband gb-lp-center" aria-labelledby="gb-lp-cta-h" style="--gb-lp-img:url('assets/img/cta.jpg')">
         <div class="gb-lp-imgbg"></div>
         <div class="gb-lp-scrim"></div>
         <span class="gb-lp-imgtag" aria-hidden="true">Image slot · licensed photo</span>
