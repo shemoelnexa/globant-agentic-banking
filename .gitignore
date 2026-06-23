@@ -1,0 +1,11 @@
+# Internal / client-sensitive — not for the public repo
+CLAUDE.md
+_reference-prior-project/
+docs/
+.preview/
+assets/logos/README.md
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.log
