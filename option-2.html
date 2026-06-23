@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agentic Banking for the GCC — Globant Finance Studio</title>
+  <meta name="description" content="The shift from digital to AI at the core of GCC banking. Globant's Finance Studio builds agentic operating models in production at regulated financial institutions." />
+
+  <!-- =========================================================
+       GLOBANT · AGENTIC BANKING FOR THE GCC — Landing Page 2
+       Direction: "Forward / The Arrow" — editorial, motion-led.
+       Self-contained, body-only embeddable. CSS/JS namespaced gb-lp-.
+       Self-hosted fonts + GSAP (assets/vendor). No external calls.
+       CSP-safe (no inline handlers). GTM in shell. Pardot slot in §6.
+       Content visible without JS (GSAP sets from-states; no JS = no hide).
+       ========================================================= -->
+
+  <style>
+    /* ---------- Self-hosted fonts ---------- */
+    @font-face { font-family:"Heebo"; src:url("assets/fonts/heebo.woff2") format("woff2"); font-weight:100 900; font-style:normal; font-display:swap; }
+    @font-face { font-family:"Open Sans"; src:url("assets/fonts/opensans.woff2") format("woff2"); font-weight:300 800; font-style:normal; font-display:swap; }
+
+    /* ---------- Tokens ---------- */
+    .gb-lp-root{
+      --navy:#00292E; --navy-2:#063238; --navy-3:#0E474E;
+      --lime:#BFD732; --lime-ink:#5F6D0B;
+      --turq:#38EFA0; --mint:#63E3CF;
+      --magenta:#E61587; --purple:#662D91;
+      --paper:#FFFFFF; --mist:#F5F6F7;
+      --ink:#00292E; --muted:#465B5E; --muted-2:#5E7376; --muted-d:#AECCCA;
+      --muted-faint-d:#8AACAA; --dim:#5E827F;
+      --line:#E4EAEA; --line-d:#13525A;
+
+      --grad:linear-gradient(100deg,var(--turq),var(--mint));
+      --grad-3:linear-gradient(100deg,var(--lime),var(--turq) 60%,var(--mint));
+
+      --maxw:1260px;
+      --gut:clamp(22px,5.2vw,76px);
+      --sec:clamp(64px,8vw,116px);
+      --r:20px; --r-s:13px;
+      --ease:cubic-bezier(.22,.61,.36,1);
+
+      font-family:"Open Sans",system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--ink); background:var(--paper); line-height:1.68;
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; font-size:15.5px;
+    }
+    .gb-lp-root *,.gb-lp-root *::before,.gb-lp-root *::after{ box-sizing:border-box; }
+    .gb-lp-root h1,.gb-lp-root h2,.gb-lp-root h3,.gb-lp-root h4,.gb-lp-root p,.gb-lp-root ul,.gb-lp-root li,.gb-lp-root figure{ margin:0; padding:0; }
+    .gb-lp-root ul{ list-style:none; }
+    .gb-lp-root img,.gb-lp-root svg{ display:block; max-width:100%; }
+    .gb-lp-root a{ color:inherit; text-decoration:none; }
+    .gb-lp-root :focus-visible{ outline:3px solid var(--lime); outline-offset:3px; border-radius:5px; }
+
+    /* ---------- Type ---------- */
+    .gb-lp-display{ font-family:"Heebo",sans-serif; font-weight:800; line-height:.98; letter-spacing:-.025em; color:var(--ink); }
+    .gb-lp-h1{ font-size:clamp(2.3rem,5.4vw,4.7rem); }
+    .gb-lp-h2{ font-family:"Heebo",sans-serif; font-weight:800; line-height:1.04; letter-spacing:-.022em; font-size:clamp(1.8rem,4.1vw,3.3rem); color:var(--ink); }
+    .gb-lp-h3{ font-family:"Heebo",sans-serif; font-weight:700; line-height:1.14; letter-spacing:-.01em; font-size:clamp(1.2rem,1.7vw,1.45rem); }
+    .gb-lp-lead{ font-size:clamp(1rem,1.3vw,1.18rem); color:var(--muted); line-height:1.6; }
+    .gb-lp-grad-t{ background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .gb-lp-lime-t{ color:var(--lime-ink); }
+    /* accent word on LIGHT bg: navy text + lime underline (readable; gradient text fails contrast on white) */
+    .gb-lp-hl{ color:var(--navy); }
+
+    .gb-lp-kicker{ font-family:"Heebo",sans-serif; font-weight:700; font-size:.72rem; letter-spacing:.24em; text-transform:uppercase; color:var(--muted); display:inline-flex; align-items:center; gap:.7em; }
+    .gb-lp-kicker .gb-lp-ar{ width:.85em; height:.92em; color:var(--lime); }
+
+    /* ---------- Layout primitives ---------- */
+    .gb-lp-section{ padding-block:var(--sec); position:relative; }
+    .gb-lp-wrap{ width:100%; max-width:var(--maxw); margin-inline:auto; padding-inline:var(--gut); }
+    .gb-lp-mist{ background:var(--mist); }
+    .gb-lp-navy{ background:var(--navy); color:#E9F6F2; }
+    .gb-lp-navy .gb-lp-display,.gb-lp-navy .gb-lp-h2,.gb-lp-navy .gb-lp-h3{ color:#fff; }
+    .gb-lp-navy .gb-lp-kicker{ color:var(--muted-d); }
+    .gb-lp-navy .gb-lp-lead{ color:var(--muted-d); }
+
+    /* ---------- Arrow symbol (the real Globant mark) ---------- */
+    .gb-lp-ar{ display:inline-block; fill:currentColor; width:1em; height:1em; }
+
+    /* ---------- Buttons ---------- */
+    .gb-lp-btn{ display:inline-flex; align-items:center; gap:.45em; font-family:"Heebo",sans-serif; font-weight:700; font-size:.94rem; padding:.92em 1.5em; border-radius:999px; cursor:pointer; border:0; transition:transform .2s var(--ease), box-shadow .28s var(--ease), background .2s; }
+    .gb-lp-btn .gb-lp-ar{ width:.6em; height:.86em; transition:transform .25s var(--ease); }
+    .gb-lp-btn:hover .gb-lp-ar{ transform:translateX(3px); }
+    .gb-lp-btn-primary{ background:var(--lime); color:var(--navy); box-shadow:0 14px 30px -14px rgba(191,215,50,.95); }
+    .gb-lp-btn-primary:hover{ transform:translateY(-2px); box-shadow:0 20px 38px -14px rgba(191,215,50,1); }
+    .gb-lp-btn-ghost{ background:transparent; color:var(--navy); box-shadow:inset 0 0 0 1.6px rgba(0,41,46,.2); }
+    .gb-lp-btn-ghost:hover{ box-shadow:inset 0 0 0 1.6px var(--navy); transform:translateY(-2px); }
+    .gb-lp-navy .gb-lp-btn-ghost{ color:#fff; box-shadow:inset 0 0 0 1.6px rgba(255,255,255,.28); }
+    .gb-lp-navy .gb-lp-btn-ghost:hover{ color:var(--turq); box-shadow:inset 0 0 0 1.6px var(--turq); }
+
+    /* ---------- Scroll progress (top) ---------- */
+    .gb-lp-progress{ position:fixed; top:0; left:0; height:3px; width:100%; transform:scaleX(0); transform-origin:0 50%; background:var(--grad-3); z-index:80; }
+
+    /* ---------- Nav ---------- */
+    .gb-lp-nav{ position:sticky; top:0; z-index:60; background:rgba(255,255,255,.8); backdrop-filter:saturate(150%) blur(14px); -webkit-backdrop-filter:saturate(150%) blur(14px); border-bottom:1px solid var(--line); }
+    .gb-lp-nav-in{ display:flex; align-items:center; justify-content:space-between; gap:1rem; height:70px; }
+    .gb-lp-nav-logo{ height:25px; width:auto; }
+    .gb-lp-nav-r{ display:flex; align-items:center; gap:1.7rem; }
+    .gb-lp-nav-links{ display:flex; gap:1.7rem; }
+    .gb-lp-nav-links a{ font-size:.95rem; color:var(--muted); font-weight:600; transition:color .15s; }
+    .gb-lp-nav-links a:hover{ color:var(--navy); }
+    .gb-lp-nav .gb-lp-btn{ padding:.6em 1.15em; font-size:.9rem; }
+    @media (max-width:920px){ .gb-lp-nav-links{ display:none; } }
+
+    /* =========================================================
+       §1 HERO
+       ========================================================= */
+    .gb-lp-hero{ position:relative; overflow:hidden; padding-top:clamp(40px,5vw,72px); padding-bottom:clamp(60px,8vw,108px); }
+    .gb-lp-hero-grid{ display:grid; grid-template-columns:1.32fr .68fr; gap:clamp(24px,3vw,52px); align-items:center; position:relative; z-index:2; }
+
+    /* DIGITAL -> AGENTIC device */
+    /* "shift" indicator — an editorial eyebrow, NOT a button */
+    .gb-lp-shift{ display:inline-flex; align-items:center; gap:.85rem; margin-bottom:1.8rem; }
+    .gb-lp-shift b{ font-family:"Heebo",sans-serif; font-weight:700; font-size:.78rem; letter-spacing:.2em; text-transform:uppercase; }
+    .gb-lp-shift .gb-lp-from{ color:var(--muted-2); }
+    .gb-lp-shift .gb-lp-rail{ position:relative; width:50px; height:2px; background:linear-gradient(90deg,var(--line),var(--lime)); border-radius:2px; }
+    .gb-lp-shift .gb-lp-rail .gb-lp-ar{ position:absolute; right:-2px; top:50%; transform:translateY(-50%); width:11px; height:12px; color:var(--lime); }
+    .gb-lp-shift .gb-lp-to{ color:var(--navy); }
+
+    .gb-lp-hero h1{ margin-bottom:0; }
+    .gb-lp-ln{ display:block; overflow:hidden; padding-bottom:.16em; margin-bottom:-.16em; }
+    .gb-lp-ln > span{ display:block; }
+    .gb-lp-hero-lead{ margin-top:1.6rem; max-width:40ch; }
+    .gb-lp-hero-cta{ display:flex; gap:.8rem; margin-top:2.1rem; flex-wrap:wrap; }
+
+    .gb-lp-trust{ margin-top:2.7rem; padding-top:1.9rem; border-top:1px solid var(--line); display:flex; gap:clamp(20px,3.4vw,46px); flex-wrap:wrap; }
+    .gb-lp-trust .gb-lp-n{ font-family:"Heebo",sans-serif; font-weight:800; font-size:1.5rem; line-height:1; letter-spacing:-.02em; color:var(--navy); }
+    .gb-lp-trust .gb-lp-l{ font-size:.78rem; color:var(--muted); margin-top:.4rem; max-width:18ch; }
+
+    .gb-lp-hero-art{ position:relative; }
+    .gb-lp-hero-art svg{ width:100%; height:auto; overflow:visible; }
+    .gb-lp-main,.gb-lp-echo,.gb-lp-spark{ transform-box:fill-box; transform-origin:center; }
+
+    /* big faint watermark arrow behind hero */
+    .gb-lp-hero-wm{ position:absolute; right:-6%; top:50%; transform:translateY(-50%); width:60%; max-width:760px; aspect-ratio:74/108; color:var(--mist); z-index:1; pointer-events:none; }
+    @media (max-width:940px){
+      .gb-lp-hero-grid{ grid-template-columns:1fr; gap:8px; }
+      .gb-lp-hero-art{ order:-1; max-width:420px; }
+      .gb-lp-hero-wm{ display:none; }
+    }
+
+    /* =========================================================
+       §1b THE SHIFT — full-bleed navy scroll beat
+       ========================================================= */
+    .gb-lp-beat{ background:var(--navy); color:#fff; overflow:hidden; }
+    .gb-lp-beat .gb-lp-wrap{ position:relative; z-index:2; text-align:center; display:flex; flex-direction:column; align-items:center; }
+    .gb-lp-beat-line{ font-family:"Heebo",sans-serif; font-weight:800; letter-spacing:-.02em; line-height:1.07; font-size:clamp(1.7rem,3.9vw,3.1rem); max-width:24ch; margin-inline:auto; }
+    .gb-lp-beat-line .gb-lp-dim{ color:var(--dim); }
+    .gb-lp-beat-line .gb-lp-hi{ background:var(--grad-3); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .gb-lp-beat-sub{ margin-top:1.4rem; max-width:62ch; margin-inline:auto; color:var(--muted-d); font-size:clamp(.95rem,1.2vw,1.08rem); }
+    /* connector rail: faint track + lime fill that grows DIGITAL -> AGENTIC */
+    .gb-lp-beat-rail{ margin-top:clamp(34px,4.5vw,56px); position:relative; height:56px; width:100%; display:flex; align-items:center; }
+    .gb-lp-beat-rail .gb-lp-bar{ position:absolute; left:0; right:0; top:calc(50% - 1px); height:2px; background:var(--navy-3); }
+    .gb-lp-beat-rail .gb-lp-fill{ position:absolute; left:0; right:0; top:calc(50% - 1px); height:2px; transform-origin:0 50%; background:linear-gradient(90deg,var(--turq),var(--lime)); }
+    .gb-lp-beat-rail .gb-lp-tag{ font-family:"Heebo",sans-serif; font-weight:700; font-size:.76rem; letter-spacing:.2em; text-transform:uppercase; background:var(--navy); padding-right:.9em; position:relative; z-index:2; color:var(--muted-d); }
+    .gb-lp-beat-rail .gb-lp-tag.gb-lp-end{ margin-left:auto; padding-right:0; padding-left:.9em; color:var(--lime); }
+
+    /* =========================================================
+       §2 PILLARS
+       ========================================================= */
+    .gb-lp-pillars-head{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(20px,4vw,56px); align-items:end; margin-bottom:clamp(38px,5vw,64px); }
+    .gb-lp-pillars-head p{ color:var(--muted); }
+    .gb-lp-pillars{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(16px,1.8vw,24px); }
+    .gb-lp-pcard{ background:var(--paper); border:1px solid var(--line); border-radius:var(--r); padding:clamp(26px,2.6vw,38px); position:relative; overflow:hidden; transition:transform .35s var(--ease), box-shadow .4s var(--ease), border-color .4s; }
+    .gb-lp-pcard:hover{ transform:translateY(-6px); box-shadow:0 30px 60px -30px rgba(0,41,46,.34); border-color:transparent; }
+    .gb-lp-pcard .gb-lp-pnum{ font-family:"Heebo",sans-serif; font-weight:800; font-size:.84rem; letter-spacing:.04em; color:var(--lime-ink); display:inline-flex; align-items:center; gap:.5em; margin-bottom:1.2rem; }
+    .gb-lp-pcard .gb-lp-pnum .gb-lp-ar{ width:.8em; height:.9em; color:var(--lime); }
+    .gb-lp-pcard .gb-lp-pico{ width:54px; height:54px; border-radius:14px; background:linear-gradient(135deg,rgba(56,239,160,.16),rgba(99,227,207,.14)); display:grid; place-items:center; margin-bottom:1.4rem; }
+    .gb-lp-pcard .gb-lp-pico svg{ width:28px; height:28px; }
+    .gb-lp-pcard h3{ margin-bottom:.7rem; }
+    .gb-lp-pcard p{ color:var(--muted); font-size:.95rem; }
+    .gb-lp-pcard::after{ content:""; position:absolute; inset:auto 0 0 0; height:3px; background:var(--grad-3); transform:scaleX(0); transform-origin:0 50%; transition:transform .45s var(--ease); }
+    .gb-lp-pcard:hover::after{ transform:scaleX(1); }
+    @media (max-width:880px){ .gb-lp-pillars{ grid-template-columns:1fr; } .gb-lp-pillars-head{ grid-template-columns:1fr; } }
+
+    /* =========================================================
+       §3 WEALTH
+       ========================================================= */
+    .gb-lp-wealth-grid{ display:grid; grid-template-columns:1.02fr .98fr; gap:clamp(34px,5vw,80px); align-items:center; }
+    .gb-lp-wealth-grid p{ color:var(--muted); margin-top:1.2rem; }
+    .gb-lp-wealth-grid p strong{ color:var(--navy); font-weight:700; }
+    .gb-lp-flow{ background:var(--paper); border:1px solid var(--line); border-radius:var(--r); padding:clamp(24px,3vw,38px); box-shadow:0 24px 50px -34px rgba(0,41,46,.3); }
+    .gb-lp-flow h4{ font-family:"Heebo",sans-serif; font-weight:700; font-size:.74rem; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-bottom:1.1rem; }
+    .gb-lp-segs{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:1.5rem; }
+    .gb-lp-segs span{ font-family:"Heebo",sans-serif; font-weight:600; font-size:.86rem; color:var(--navy); background:var(--mist); border:1px solid var(--line); border-radius:10px; padding:.72em .9em; text-align:center; }
+    .gb-lp-fl{ display:flex; align-items:center; gap:.85rem; padding:.82rem 0; }
+    .gb-lp-fl + .gb-lp-fl{ border-top:1px dashed var(--line); }
+    .gb-lp-fl .gb-lp-ar{ width:15px; height:17px; color:var(--turq); flex:none; }
+    .gb-lp-fl:last-child .gb-lp-ar{ color:var(--lime); }
+    .gb-lp-fl b{ font-family:"Heebo",sans-serif; font-weight:700; color:var(--navy); font-size:.98rem; }
+    .gb-lp-fl small{ display:block; color:var(--muted); font-size:.84rem; }
+    @media (max-width:880px){ .gb-lp-wealth-grid{ grid-template-columns:1fr; } }
+
+    /* =========================================================
+       §4 PROOF (navy)
+       ========================================================= */
+    .gb-lp-proof-head{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,4vw,60px); align-items:end; }
+    .gb-lp-proof-head p{ color:var(--muted-d); }
+    .gb-lp-stats{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(18px,3vw,40px); margin:clamp(46px,6vw,76px) 0 clamp(38px,5vw,58px); }
+    .gb-lp-stat{ border-top:2px solid var(--navy-3); padding-top:1.3rem; }
+    .gb-lp-stat .gb-lp-sn{ font-family:"Heebo",sans-serif; font-weight:800; letter-spacing:-.03em; line-height:.92; font-size:clamp(2.5rem,5.7vw,4.4rem); color:#fff; }
+    .gb-lp-stat .gb-lp-sn em{ font-style:normal; background:var(--grad-3); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .gb-lp-stat .gb-lp-sl{ color:var(--muted-d); margin-top:.7rem; font-size:.92rem; max-width:24ch; }
+    .gb-lp-logos-l{ font-family:"Heebo",sans-serif; font-weight:700; font-size:.72rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted-d); margin-bottom:1.4rem; }
+    .gb-lp-logos{ display:flex; flex-wrap:wrap; align-items:center; gap:clamp(24px,4vw,54px); }
+    .gb-lp-logos img{ height:30px; width:auto; opacity:.72; filter:brightness(0) invert(1); transition:opacity .25s, filter .25s, transform .25s; }
+    .gb-lp-logos a:hover img{ opacity:1; filter:none; transform:translateY(-2px); }
+    .gb-lp-logos .gb-lp-sep{ width:1px; height:26px; background:var(--navy-3); }
+    .gb-lp-navy .gb-lp-logos-note{ margin-top:3.4rem; font-size:.78rem; color:var(--muted-faint-d); }
+    @media (max-width:760px){ .gb-lp-proof-head{ grid-template-columns:1fr; } .gb-lp-stats{ grid-template-columns:1fr; gap:30px; } }
+
+    /* =========================================================
+       §5 AI PODS
+       ========================================================= */
+    .gb-lp-pods-grid{ display:grid; grid-template-columns:.96fr 1.04fr; gap:clamp(34px,5vw,80px); align-items:center; }
+    .gb-lp-pods-grid p{ color:var(--muted); margin-top:1.2rem; }
+    .gb-lp-pods-tag{ margin-top:1.7rem; font-family:"Heebo",sans-serif; font-weight:700; color:var(--navy); font-size:1.02rem; display:flex; align-items:center; gap:.55em; flex-wrap:wrap; }
+    .gb-lp-pods-tag .gb-lp-ar{ width:.8em; height:.9em; color:var(--lime); }
+    .gb-lp-pods-tag span{ color:var(--muted); font-weight:400; }
+    .gb-lp-pod{ background:var(--paper); border:1px solid var(--line); border-radius:var(--r); padding:clamp(26px,3vw,40px); box-shadow:0 24px 50px -34px rgba(0,41,46,.3); }
+    .gb-lp-pod h4{ font-family:"Heebo",sans-serif; font-weight:700; font-size:.74rem; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); margin-bottom:1.3rem; text-align:center; }
+    .gb-lp-pod-roles{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .gb-lp-prole{ display:flex; align-items:center; gap:.7rem; background:var(--mist); border:1px solid var(--line); border-radius:12px; padding:.85em 1em; font-family:"Heebo",sans-serif; font-weight:600; font-size:.9rem; color:var(--navy); }
+    .gb-lp-prole svg{ width:20px; height:20px; flex:none; }
+    .gb-lp-pod-core{ margin-top:14px; text-align:center; background:var(--navy); color:#fff; border-radius:12px; padding:1.05em; font-family:"Heebo",sans-serif; font-weight:700; font-size:.94rem; }
+    .gb-lp-pod-core span{ color:var(--turq); }
+    @media (max-width:880px){ .gb-lp-pods-grid{ grid-template-columns:1fr; } }
+
+    /* =========================================================
+       §6 REPORT + PARDOT
+       ========================================================= */
+    .gb-lp-report-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(28px,4vw,60px); align-items:stretch; }
+    .gb-lp-report-l{ align-self:center; }
+    .gb-lp-report-cover{ font-family:"Heebo",sans-serif; font-weight:800; font-size:.78rem; letter-spacing:.18em; text-transform:uppercase; color:var(--navy); margin-bottom:1rem; display:inline-block; }
+    .gb-lp-report-l ul{ margin-top:1.7rem; display:grid; gap:.95rem; }
+    .gb-lp-report-l li{ display:flex; gap:.75rem; align-items:flex-start; color:var(--muted); font-size:1rem; }
+    .gb-lp-report-l li svg{ width:22px; height:22px; flex:none; margin-top:2px; }
+    .gb-lp-form{ background:var(--paper); border:1px solid var(--line); border-radius:var(--r); box-shadow:0 30px 60px -34px rgba(0,41,46,.4); padding:clamp(22px,2.4vw,30px); }
+    .gb-lp-form h3{ margin-bottom:.35rem; }
+    .gb-lp-form .gb-lp-fsub{ color:var(--muted); font-size:.92rem; margin-bottom:1.2rem; }
+    .gb-lp-pardot{ border:1.5px dashed #C4D2D2; border-radius:var(--r-s); min-height:430px; display:grid; place-items:center; text-align:center; padding:2rem; background:linear-gradient(135deg,rgba(56,239,160,.1),rgba(99,227,207,.08)); }
+    .gb-lp-pardot .gb-lp-pill{ font-family:"Heebo",sans-serif; font-weight:700; font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; color:var(--navy); background:#fff; border:1px solid var(--line); border-radius:999px; padding:.5em 1em; display:inline-block; margin-bottom:1rem; }
+    .gb-lp-pardot p{ font-size:.9rem; color:var(--muted); max-width:30ch; margin-inline:auto; }
+    .gb-lp-pardot code{ font-family:ui-monospace,Menlo,monospace; font-size:.82rem; color:var(--navy); background:#fff; padding:.15em .45em; border-radius:6px; border:1px solid var(--line); }
+    .gb-lp-pardot iframe{ width:100%; min-height:430px; border:0; }
+    @media (max-width:880px){ .gb-lp-report-grid{ grid-template-columns:1fr; } }
+
+    /* =========================================================
+       §7 FINAL CTA + FOOTER (navy)
+       ========================================================= */
+    .gb-lp-cta{ text-align:center; max-width:52ch; margin-inline:auto; }
+    .gb-lp-cta h2{ font-size:clamp(1.9rem,4.4vw,3.2rem); }
+    .gb-lp-cta p{ color:var(--muted-d); margin-top:1.1rem; }
+    .gb-lp-chips{ display:flex; flex-wrap:wrap; justify-content:center; gap:.6rem; margin:1.9rem 0 2.3rem; }
+    .gb-lp-chip{ font-family:"Heebo",sans-serif; font-weight:600; font-size:.86rem; color:#E9F6F2; border:1px solid var(--navy-3); border-radius:999px; padding:.52em 1.05em; }
+    .gb-lp-cta .gb-lp-btn-primary{ font-size:1.06rem; padding:1.05em 1.95em; }
+    .gb-lp-footer{ border-top:1px solid var(--navy-3); margin-top:clamp(38px,4.5vw,60px); padding-top:2.4rem; }
+    .gb-lp-footer-grid{ display:flex; align-items:center; justify-content:space-between; gap:1.4rem; flex-wrap:wrap; }
+    .gb-lp-footer-logo{ height:30px; width:auto; }
+    .gb-lp-footer-meta{ display:flex; gap:1.5rem; flex-wrap:wrap; align-items:center; }
+    .gb-lp-footer-meta a,.gb-lp-footer-meta span{ font-size:.84rem; color:var(--muted-d); }
+    .gb-lp-footer-meta a:hover{ color:#fff; }
+    .gb-lp-footer-fine{ margin-top:1.7rem; font-size:.76rem; color:var(--muted-faint-d); max-width:72ch; }
+
+    /* ---------- decorative section watermark arrow ---------- */
+    .gb-lp-wm{ position:absolute; pointer-events:none; z-index:0; opacity:.5; }
+
+    /* ---------- nav hide / shrink on scroll ---------- */
+    .gb-lp-nav{ will-change:transform; transition:transform .4s var(--ease), background .3s; }
+    .gb-lp-nav.gb-lp-hide{ transform:translateY(-101%); }
+    .gb-lp-nav-in{ transition:height .35s var(--ease); }
+    .gb-lp-nav.gb-lp-shrink .gb-lp-nav-in{ height:58px; }
+
+    /* ---------- drifting background arrow field ---------- */
+    .gb-lp-floaters{ position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:0; }
+    .gb-lp-fa{ position:absolute; height:auto; aspect-ratio:74/108; }
+    .gb-lp-beat .gb-lp-fa{ color:rgba(99,227,207,.08); }
+    .gb-lp-cta-sec .gb-lp-fa{ color:rgba(99,227,207,.07); }
+    .gb-lp-fa1{ top:14%; left:5%; width:42px; }
+    .gb-lp-fa2{ top:60%; left:14%; width:74px; }
+    .gb-lp-fa3{ top:20%; right:8%; width:104px; }
+    .gb-lp-fa4{ top:72%; right:20%; width:54px; }
+    .gb-lp-cta-sec .gb-lp-wrap{ position:relative; z-index:2; }
+
+    /* =========================================================
+       VARIANT B — full-width image bands (alternating sections)
+       Each band shows a branded gradient+arrow fallback until an
+       approved/licensed photo is set via inline --gb-lp-img.
+       NO AI-generated / unlicensed imagery (brand hard rule).
+       ========================================================= */
+    .gb-lp-imgband{ position:relative; overflow:hidden; isolation:isolate; color:#fff; }
+    .gb-lp-imgband .gb-lp-imgbg{ position:absolute; inset:0; z-index:-2; background-color:var(--navy);
+      background-image:var(--gb-lp-img,none); background-size:cover; background-position:center; }
+    /* branded art fallback (visible when no photo is supplied) */
+    .gb-lp-imgband .gb-lp-imgbg::after{ content:""; position:absolute; inset:0;
+      background:
+        radial-gradient(85% 95% at 78% 28%, rgba(56,239,160,.24), transparent 60%),
+        radial-gradient(70% 80% at 8% 92%, rgba(99,227,207,.16), transparent 55%),
+        linear-gradient(120deg,#00292E 0%,#063238 55%,#001a1e 100%); }
+    /* legibility scrim over whatever sits behind the text */
+    .gb-lp-imgband .gb-lp-scrim{ position:absolute; inset:0; z-index:-1;
+      background:linear-gradient(90deg, rgba(0,18,21,.86) 0%, rgba(0,18,21,.55) 46%, rgba(0,18,21,.12) 100%); }
+    .gb-lp-imgband.gb-lp-center .gb-lp-scrim{ background:linear-gradient(180deg, rgba(0,18,21,.42), rgba(0,18,21,.72)); }
+    .gb-lp-imgband .gb-lp-bandarrow{ position:absolute; right:-3%; top:50%; transform:translateY(-50%);
+      width:46%; max-width:660px; aspect-ratio:74/108; color:rgba(191,215,50,.12); fill:currentColor; z-index:-1; pointer-events:none; }
+    /* tiny corner marker so reviewers know this is an image slot (remove for production) */
+    .gb-lp-imgband .gb-lp-imgtag{ position:absolute; left:var(--gut); bottom:18px; z-index:3; font-family:"Heebo",sans-serif;
+      font-weight:700; font-size:.62rem; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.5);
+      border:1px solid rgba(255,255,255,.22); border-radius:999px; padding:.4em .9em; }
+
+    /* text colours on image bands */
+    .gb-lp-imgband .gb-lp-display,.gb-lp-imgband .gb-lp-h1,.gb-lp-imgband .gb-lp-h2,.gb-lp-imgband .gb-lp-h3,.gb-lp-imgband .gb-lp-hl{ color:#fff; }
+    .gb-lp-imgband .gb-lp-kicker{ color:rgba(233,246,242,.8); }
+    .gb-lp-imgband .gb-lp-lead{ color:rgba(233,246,242,.88); }
+    .gb-lp-imgband .gb-lp-shift .gb-lp-from{ color:rgba(255,255,255,.6); }
+    .gb-lp-imgband .gb-lp-shift .gb-lp-to{ color:#fff; }
+    .gb-lp-imgband .gb-lp-trust{ border-top-color:rgba(255,255,255,.2); }
+    .gb-lp-imgband .gb-lp-trust .gb-lp-n{ color:#fff; }
+    .gb-lp-imgband .gb-lp-trust .gb-lp-l{ color:rgba(233,246,242,.72); }
+    .gb-lp-imgband .gb-lp-btn-ghost{ color:#fff; box-shadow:inset 0 0 0 1.6px rgba(255,255,255,.38); }
+    .gb-lp-imgband .gb-lp-btn-ghost:hover{ color:var(--turq); box-shadow:inset 0 0 0 1.6px var(--turq); }
+    .gb-lp-imgband .gb-lp-wealth-grid p{ color:rgba(233,246,242,.86); }
+    .gb-lp-imgband .gb-lp-wealth-grid p strong{ color:#fff; }
+
+    /* hero as an image band */
+    .gb-lp-hero.gb-lp-imgband{ display:flex; align-items:center; min-height:clamp(560px,88vh,860px); padding-block:clamp(90px,12vh,140px); }
+    .gb-lp-hero.gb-lp-imgband .gb-lp-hero-copy{ max-width:62ch; }
+    .gb-lp-hero.gb-lp-imgband .gb-lp-hero-lead{ max-width:46ch; }
+    /* wealth band: keep the flow card readable on the photo */
+    .gb-lp-imgband .gb-lp-flow{ background:rgba(255,255,255,.97); }
+
+    @media (prefers-reduced-motion:reduce){
+      .gb-lp-root *{ animation:none !important; transition:none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ====== BODY-ONLY EMBEDDABLE CONTENT STARTS ====== -->
+  <div class="gb-lp-root" id="gb-lp-top">
+
+    <!-- shared arrow symbol: the real Globant mark -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+      <symbol id="gb-lp-arrow" viewBox="492 33 74 108">
+        <path d="M500.24,35.53A3.92,3.92,0,0,0,494.51,40L502,51.17a64.82,64.82,0,0,1,0,72.11l-7.48,11.16a3.92,3.92,0,0,0,5.72,4.48l62.71-47.77a4.91,4.91,0,0,0,0-7.82Z"/>
+      </symbol>
+    </svg>
+
+    <div class="gb-lp-progress" id="gb-lp-progress" aria-hidden="true"></div>
+
+    <!-- ============ NAV ============ -->
+    <header class="gb-lp-nav">
+      <div class="gb-lp-wrap gb-lp-nav-in">
+        <a href="#gb-lp-top" aria-label="Globant home"><img class="gb-lp-nav-logo" src="assets/logos/globant-black.svg" alt="Globant" /></a>
+        <nav class="gb-lp-nav-r" aria-label="Primary">
+          <div class="gb-lp-nav-links">
+            <a href="#gb-lp-pillars">The shift</a>
+            <a href="#gb-lp-wealth">Wealth</a>
+            <a href="#gb-lp-proof">Proof</a>
+            <a href="#gb-lp-pods">AI Pods</a>
+            <a href="#gb-lp-report">Report</a>
+          </div>
+          <a class="gb-lp-btn gb-lp-btn-primary" href="#gb-lp-contact">Talk to our Finance Studio<svg class="gb-lp-ar" aria-hidden="true"><use href="#gb-lp-arrow"/></svg></a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- ============ §1 HERO ============ -->
+      <!-- IMAGE SLOT: add an approved/licensed photo via inline style, e.g.
+           style="--gb-lp-img:url('assets/img/hero.jpg')" — branded art shows until then -->
+      <section class="gb-lp-section gb-lp-hero gb-lp-imgband" aria-labelledby="gb-lp-hero-h">
+        <div class="gb-lp-imgbg"></div>
+        <div class="gb-lp-scrim"></div>
+        <svg class="gb-lp-bandarrow" aria-hidden="true"><use href="#gb-lp-arrow"/></svg>
+        <div class="gb-lp-wrap">
+          <div class="gb-lp-hero-copy">
+            <span class="gb-lp-shift" data-anim="hero">
+              <b class="gb-lp-from">Digital</b>
+              <span class="gb-lp-rail"><svg class="gb-lp-ar" aria-hidden="true"><use href="#gb-lp-arrow"/></svg></span>
+              <b class="gb-lp-to">Agentic</b>
+            </span>
+
+            <h1 id="gb-lp-hero-h" class="gb-lp-display gb-lp-h1">
+              <span class="gb-lp-ln" data-anim="hero"><span>The shift that</span></span>
+              <span class="gb-lp-ln" data-anim="hero"><span>defines the</span></span>
+              <span class="gb-lp-ln" data-anim="hero"><span>next decade of</span></span>
+              <span class="gb-lp-ln" data-anim="hero"><span class="gb-lp-hl">GCC banking</span></span>
+            </h1>
+
+            <p class="gb-lp-lead gb-lp-hero-lead" data-anim="hero">
+              Every bank in the GCC went digital. The Agentic Bank is different — built around AI at the core,
+              where agents anticipate intent, act across the operating model, and decide in real time,
+              within the rules your institution defines.
+            </p>
+
+            <div class="gb-lp-hero-cta" data-anim="hero">
+              <a class="gb-lp-btn gb-lp-btn-primary" href="#gb-lp-contact">Talk to our Finance Studio<svg class="gb-lp-ar" aria-hidden="true"><use href="#gb-lp-arrow"/></svg></a>
+              <a class="gb-lp-btn gb-lp-btn-ghost" href="#gb-lp-report">Get the 2026 report</a>
+            </div>
+
+            <div class="gb-lp-trust" data-anim="hero">
+              <div><div class="gb-lp-n">300+</div><div class="gb-lp-l">financial institutions</div></div>
+              <div><div class="gb-lp-n">5 of 10</div><div class="gb-lp-l">world's top banks by assets</div></div>
+              <div><div class="gb-lp-n">20+ yrs</div><div class="gb-lp-l">exclusive BFSI depth</div></div>
+            </div>
+          </div>
+        </div>
+        <span class="gb-lp-imgtag" aria-hidden="true">Image slot · licensed photo</span>
+      </section>
+
+      <!-- ============ §1b THE SHIFT — navy beat ============ -->
+      <section class="gb-lp-section gb-lp-beat" aria-label="The shift to agentic banking">
+        <div class="gb-lp-floaters" aria-hidden="true">
+          <svg class="gb-lp-ar gb-lp-fa gb-lp-fa1"><use href="#gb-lp-arrow"/></svg>
+          <svg class="gb-lp-ar gb-lp-fa gb-lp-fa2"><use href="#gb-lp-arrow"/></svg>
+          <svg class="gb-lp-ar gb-lp-fa gb-lp-fa3"><use href="#gb-lp-arrow"/></svg>
+          <svg class="gb-lp-ar gb-lp-fa gb-lp-fa4"><use href="#gb-lp-arrow"/></svg>
+        </div>
+        <div class="gb-lp-wrap">
+          <p class="gb-lp-kicker" data-anim="beat" style="color:var(--muted-d);margin-bottom:1.4rem"><svg class="gb-lp-ar" aria-hidden="true"><use href="#gb-lp-arrow"/></svg>The operating model</p>
+          <h2 class="gb-lp-beat-line" data-anim="beat">AI is no longer a feature <span class="gb-lp-dim">inside a digital bank.</span> It is the <span class="gb-lp-hi">operating model.</span></h2>
+          <p class="gb-lp-beat-sub" data-anim="beat">
+            Banks are embedding AI and agentic AI across analytics and decision-making — chatbots and custom GPT
+            solutions, AI-enhanced insights, and agentic workflows supported by orchestration layers that let
+            systems act within defined guardrails.
+          </p>
+          <div class="gb-lp-beat-rail" data-anim="beat">
+            <span class="gb-lp-bar"></span>
+            <span class="gb-lp-fill"></span>
+            <span class="gb-lp-tag">Digital information</span>
+            <span class="gb-lp-tag gb-lp-end">Intelligent, self-running banking</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ §2 PILLARS ============ -->
+      <section id="gb-lp-pillars" class="gb-lp-section gb-lp-mist" aria-labelledby="gb-lp-pillars-h">
+        <div class="gb-lp-wrap">
+          <div class="gb-lp-pillars-head">
+            <div>
+              <span class="gb-lp-kicker" data-anim="up"><svg class="gb-lp-ar" aria-hidden="true"><use href="#gb-lp-arrow"/></svg>The three pillars</span>
+              <h2 id="gb-lp-pillars-h" class="gb-lp-h2" data-anim="up" style="margin-top:1rem">What changes when a bank runs on agents</h2>
+            </div>
+            <p data-anim="up">Agentic banking means systems that act within defined guardrails — not waiting for a human to approve every decision, but accountable to the rules your institution sets.</p>
+          </div>
+
+          <div class="gb-lp-pillars">
+            <article class="gb-lp-pcard" data-anim="card">
+              <span class="gb-lp-pnum"><svg class="gb-lp-ar" aria-hidden="true"><use href="#gb-lp-arrow"/></svg>Pillar 01</span>
+              <div class="gb-lp-pico"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 13l4-4 4 3 6-7" stroke="#00292E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 5h4v4" stroke="#00292E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 19h18" stroke="#38EFA0" stroke-width="2" stroke-linecap="round"/></svg></div>
+              <h3 class="gb-lp-h3">Intelligent decisioning at speed</h3>
+              <p>Credit decisions, fraud detection, risk scoring and compliance checks — orchestrated by AI agents acting within defined guardrails. Not rules engines. Not static models. Living systems that learn from every transaction and enforce your policies autonomously, at a scale no manual process can match.</p>
+            </article>
+            <article class="gb-lp-pcard" data-anim="card">
+              <span class="gb-lp-pnum"><svg class="gb-lp-ar" aria-hidden="true"><use href="#gb-lp-arrow"/></svg>Pillar 02</span>
+              <div class="gb-lp-pico"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="8" r="3.4" stroke="#00292E" stroke-width="2"/><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6" stroke="#00292E" stroke-width="2" stroke-linecap="round"/><path d="M18.5 5.5a4 4 0 010 5" stroke="#38EFA0" stroke-width="2" stroke-linecap="round"/></svg></div>
+              <h3 class="gb-lp-h3">Always-on client experience</h3>
+              <p>The Agentic Bank knows what clients need before they ask — the major purchase, the portfolio rebalance, the SME owner who needs a decision by morning. Agents handle the data, the analysis and the first response. Your people handle the relationship and the judgment. The human touch stays; the manual work doesn't.</p>
+            </article>
+            <article class="gb-lp-pcard" data-anim="card">
+              <span class="gb-lp-pnum"><svg class="gb-lp-ar" aria-hidden="true"><use href="#gb-lp-arrow"/></svg>Pillar 03</span>
+              <div class="gb-lp-pico"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="6" cy="12" r="2.4" stroke="#00292E" stroke-width="2"/><circle cx="18" cy="6" r="2.4" stroke="#00292E" stroke-width="2"/><circle cx="18" cy="18" r="2.4" stroke="#38EFA0" stroke-width="2"/><path d="M8.1 11l7.8-4M8.1 13l7.8 4" stroke="#00292E" stroke-width="2" stroke-linecap="round"/></svg></div>
+              <h3 class="gb-lp-h3">Open banking &amp; the connected financial ecosystem</h3>
+              <p>The next decade isn't built on closed systems. It's built on interoperable platforms that connect to regional payment rails, open finance infrastructure, wealth networks and AI decisioning layers at once. CBUAE Open Finance and SAMA Open Banking aren't compliance obligations — they're the architecture of a bank that grows without walls.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ §3 WEALTH ============ -->
+      <!-- IMAGE SLOT: style="--gb-lp-img:url('assets/img/wealth.jpg')" -->
+      <section id="gb-lp-wealth" class="gb-lp-section gb-lp-imgband" aria-labelledby="gb-lp-wealth-h">
+        <div class="gb-lp-imgbg"></div>
+        <div class="gb-lp-scrim"></div>
+        <span class="gb-lp-imgtag" aria-hidden="true">Image slot · licensed photo</span>
+        <div class="gb-lp-wrap gb-lp-wealth-grid">
+          <div>
+            <span class="gb-lp-kicker" data-anim="up"><svg class="gb-lp-ar" aria-hidden="true"><use href="#gb-lp-arrow"/></svg>Wealth management · GCC-specific</span>
+            <h2 id="gb-lp-wealth-h" class="gb-lp-h2" data-anim="up" style="margin-top:1rem">Where agentic AI changes wealth management in the GCC</h2>
+            <p data-anim="up">Wealth management in the GCC is not the same as anywhere else. The client base spans ultra-high-net-worth individuals, sovereign wealth entities, family offices and a fast-growing mass-affluent segment — each needing a different level of personalisation, compliance posture and relationship.</p>
+            <p data-anim="up">Agentic AI makes all of it possible at scale. <strong>Propensity models</strong> that identify the right product at the right moment. <strong>Event-driven triggers</strong> that connect portfolio decisions to real-world signals — market movements, regulatory changes, life events. And <strong>advisory agents</strong> that surface the insight, so your relationship manager delivers it with the judgement and empathy no system replaces.</p>
+          </div>
+          <div class="gb-lp-flow" data-anim="up" aria-label="How agentic wealth management works in the GCC">
+            <h4>GCC client segments</h4>
+            <div class="gb-lp-segs">
+              <span>Ultra-HNW individuals</span><span>Sovereign wealth</span>
+              <span>Family offices</span><span>Mass-affluent</span>
+            </div>
+            <h4>Agentic flow</h4>
+            <div class="gb-lp-fl"><svg class="gb-lp-ar" aria-hidden="true"><use href="#gb-lp-arrow"/></svg><div><b>Propensity models</b><small>Right product, right client, right moment</small></div></div>
+            <div class="gb-lp-fl"><svg class="gb-lp-ar" aria-hidden="true"><use href="#gb-lp-arrow"/></svg><div><b>Event-driven triggers</b><small>Market moves · regulatory change · life events</small></div></div>
+            <div class="gb-lp-fl"><svg class="gb-lp-ar" aria-hidden="true"><use href="#gb-lp-arrow"/></svg><div><b>Advisory agents</b><small>Surface the insight, ready to act on</small></div></div>
+            <div class="gb-lp-fl"><svg class="gb-lp-ar" aria-hidden="true"><use href="#gb-lp-arrow"/></svg><div><b>Relationship manager</b><small>Delivers with judgement &amp; empathy</small></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ §4 PROOF (navy) ============ -->
+      <section id="gb-lp-proof" class="gb-lp-section gb-lp-navy" aria-labelledby="gb-lp-proof-h">
+        <div class="gb-lp-wrap">
+          <div class="gb-lp-proof-head">
+            <div>
+              <span class="gb-lp-kicker" data-anim="up"><svg class="gb-lp-ar" aria-hidden="true"><use href="#gb-lp-arrow"/></svg>The proof</span>
+              <h2 id="gb-lp-proof-h" class="gb-lp-h2" data-anim="up" style="margin-top:1rem">Built in production. Not promised in a pilot.</h2>
+            </div>
+            <p data-anim="up">Globant's Financial Services AI Studio builds AI operating models — in production, at regulated financial institutions, measured against real business outcomes.</p>
+          </div>
+          <div class="gb-lp-stats">
+            <div class="gb-lp-stat" data-anim="up"><div class="gb-lp-sn"><em><span class="gb-lp-count" data-to="300">300</span>+</em></div><div class="gb-lp-sl">financial institutions served</div></div>
+            <div class="gb-lp-stat" data-anim="up"><div class="gb-lp-sn"><span class="gb-lp-count" data-to="5">5</span><span style="font-size:.42em;font-weight:600;color:var(--muted-d)"> of the </span>10</div><div class="gb-lp-sl">world's top banks by assets</div></div>
+            <div class="gb-lp-stat" data-anim="up"><div class="gb-lp-sn"><em><span class="gb-lp-count" data-to="20">20</span>+</em> yrs</div><div class="gb-lp-sl">exclusive BFSI engineering depth</div></div>
+          </div>
+          <div data-anim="up">
+            <div class="gb-lp-logos-l">Trusted across financial services &amp; built with the ecosystem</div>
+            <div class="gb-lp-logos">
+              <a href="#gb-lp-contact" aria-label="Santander"><img src="assets/logos/santander.svg" alt="Santander" /></a>
+              <a href="#gb-lp-contact" aria-label="Finastra"><img src="assets/logos/finastra.svg" alt="Finastra" /></a>
+              <span class="gb-lp-sep" aria-hidden="true"></span>
+              <a href="#gb-lp-contact" aria-label="AWS"><img src="assets/logos/aws.svg" alt="AWS" /></a>
+              <a href="#gb-lp-contact" aria-label="Salesforce"><img src="assets/logos/salesforce.svg" alt="Salesforce" /></a>
+              <a href="#gb-lp-contact" aria-label="SAP"><img src="assets/logos/sap.svg" alt="SAP" /></a>
+              <a href="#gb-lp-contact" aria-label="Sitecore"><img src="assets/logos/sitecore.svg" alt="Sitecore" /></a>
+              <a href="#gb-lp-contact" aria-label="Adobe"><img src="assets/logos/adobe.svg" alt="Adobe" /></a>
+            </div>
+            <p class="gb-lp-logos-note">Client &amp; partner marks shown for reference. Each requires usage sign-off before publication.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ §5 AI PODS ============ -->
+      <section id="gb-lp-pods" class="gb-lp-section" aria-labelledby="gb-lp-pods-h">
+        <div class="gb-lp-wrap gb-lp-pods-grid">
+          <div>
+            <span class="gb-lp-kicker" data-anim="up"><svg class="gb-lp-ar" aria-hidden="true"><use href="#gb-lp-arrow"/></svg>How Globant delivers</span>
+            <h2 id="gb-lp-pods-h" class="gb-lp-h2" data-anim="up" style="margin-top:1rem">AI Pods — the delivery model built for GCC transformation timelines</h2>
+            <p data-anim="up">Building an AI operating model takes more than technology. It takes people who understand both the architecture and the institution — embedded inside your teams, accountable for production outcomes, not project deliverables.</p>
+            <p data-anim="up">Globant's AI Pods are cross-functional units — AI engineers, data scientists, BFSI domain experts and compliance specialists — that design, build and operate your agentic systems within the regulatory guardrails your market requires.</p>
+            <p class="gb-lp-pods-tag" data-anim="up"><svg class="gb-lp-ar" aria-hidden="true"><use href="#gb-lp-arrow"/></svg>Engineering on demand. <span>Powered by AI. Orchestrated by Globant.</span></p>
+          </div>
+          <div class="gb-lp-pod" data-anim="up" aria-label="Composition of an AI Pod">
+            <h4>One cross-functional pod, embedded in your teams</h4>
+            <div class="gb-lp-pod-roles">
+              <div class="gb-lp-prole"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2" stroke="#00292E" stroke-width="1.8"/><path d="M9 2.5v3M15 2.5v3M9 18.5v3M15 18.5v3M2.5 9h3M2.5 15h3M18.5 9h3M18.5 15h3" stroke="#38EFA0" stroke-width="1.8" stroke-linecap="round"/></svg>AI engineers</div>
+              <div class="gb-lp-prole"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 3v18h18" stroke="#00292E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 15l3.5-4 3 2.5L21 7" stroke="#38EFA0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Data scientists</div>
+              <div class="gb-lp-prole"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 9l9-5 9 5M5 9.5V19M19 9.5V19M9.5 9.5V19M14.5 9.5V19M3 21h18" stroke="#00292E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>BFSI domain experts</div>
+              <div class="gb-lp-prole"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6l7-3z" stroke="#00292E" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="#38EFA0" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>Compliance specialists</div>
+            </div>
+            <div class="gb-lp-pod-core">Designs, builds &amp; operates your <span>agentic systems</span> — within your regulatory guardrails</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ §6 REPORT + PARDOT ============ -->
+      <section id="gb-lp-report" class="gb-lp-section gb-lp-mist" aria-labelledby="gb-lp-report-h">
+        <div class="gb-lp-wrap gb-lp-report-grid">
+          <div class="gb-lp-report-l">
+            <span class="gb-lp-report-cover" data-anim="up">Smart Banking 2026</span>
+            <h2 id="gb-lp-report-h" class="gb-lp-h2" data-anim="up">Reinventing banking from the inside out</h2>
+            <p class="gb-lp-lead" data-anim="up" style="margin-top:1.1rem">Globant's GCC financial-services thought-leadership report — practical, evidence-based, and built for the GCC context.</p>
+            <ul>
+              <li data-anim="up"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="#38EFA0" stroke-width="2"/><path d="M8 12.5l2.5 2.5L16 9" stroke="#00292E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>The GCC regulatory landscape — CBUAE Open Finance and SAMA Open Banking</span></li>
+              <li data-anim="up"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="#38EFA0" stroke-width="2"/><path d="M8 12.5l2.5 2.5L16 9" stroke="#00292E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>The Islamic banking architecture for agentic systems</span></li>
+              <li data-anim="up"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="#38EFA0" stroke-width="2"/><path d="M8 12.5l2.5 2.5L16 9" stroke="#00292E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>The agentic capabilities that define the next decade</span></li>
+            </ul>
+          </div>
+          <!-- PARDOT FORM SLOT -->
+          <div class="gb-lp-form" data-anim="up">
+            <h3 class="gb-lp-h3">Download the report</h3>
+            <p class="gb-lp-fsub">A few details and the PDF is yours.</p>
+            <div class="gb-lp-pardot" id="gb-lp-pardot" role="group" aria-label="Report download form">
+              <div>
+                <span class="gb-lp-pill">Pardot form slot</span>
+                <p>Globant's Pardot <code>&lt;iframe&gt;</code> mounts here once the form URL is provided. Slot is sized, styled and CSP-ready.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ §7 FINAL CTA + FOOTER (navy) ============ -->
+      <!-- IMAGE SLOT: style="--gb-lp-img:url('assets/img/cta.jpg')" -->
+      <section id="gb-lp-contact" class="gb-lp-section gb-lp-cta-sec gb-lp-imgband gb-lp-center" aria-labelledby="gb-lp-cta-h">
+        <div class="gb-lp-imgbg"></div>
+        <div class="gb-lp-scrim"></div>
+        <span class="gb-lp-imgtag" aria-hidden="true">Image slot · licensed photo</span>
+        <div class="gb-lp-wrap">
+          <div class="gb-lp-cta">
+            <span class="gb-lp-kicker" data-anim="up" style="justify-content:center;display:flex"><svg class="gb-lp-ar" aria-hidden="true"><use href="#gb-lp-arrow"/></svg>Talk to our Finance Studio</span>
+            <h2 id="gb-lp-cta-h" class="gb-lp-h2" data-anim="up" style="margin-top:1rem">Ready to move from digital to agentic?</h2>
+            <p data-anim="up">Our GCC finance specialists are available to discuss your institution's specific priorities.</p>
+            <div class="gb-lp-chips" data-anim="up">
+              <span class="gb-lp-chip">Intelligent decisioning</span>
+              <span class="gb-lp-chip">Wealth management AI</span>
+              <span class="gb-lp-chip">Open banking architecture</span>
+              <span class="gb-lp-chip">Legacy modernisation</span>
+            </div>
+            <a class="gb-lp-btn gb-lp-btn-primary" data-anim="up" href="#gb-lp-pardot">Book a conversation<svg class="gb-lp-ar" aria-hidden="true"><use href="#gb-lp-arrow"/></svg></a>
+          </div>
+          <footer class="gb-lp-footer">
+            <div class="gb-lp-footer-grid">
+              <img class="gb-lp-footer-logo" src="assets/logos/globant-white-green.svg" alt="Globant" />
+              <div class="gb-lp-footer-meta">
+                <span>Finance Studio · GCC</span>
+                <a href="#gb-lp-report">Smart Banking 2026 report</a>
+                <a href="#gb-lp-contact">Contact</a>
+              </div>
+            </div>
+            <p class="gb-lp-footer-fine">© Globant. For UAE, KSA, Qatar &amp; Bahrain financial institutions. Client and partner marks are the property of their respective owners and shown for reference pending usage sign-off.</p>
+          </footer>
+        </div>
+      </section>
+    </main>
+  </div>
+  <!-- ====== BODY-ONLY EMBEDDABLE CONTENT ENDS ====== -->
+
+  <!-- Self-hosted GSAP (CSP: script-src 'self') -->
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script src="assets/vendor/ScrollTrigger.min.js"></script>
+  <script>
+    (function(){
+      var root = document.querySelector(".gb-lp-root");
+      if(!root || !window.gsap) return;                 // no lib -> content already visible
+      var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var gsap = window.gsap;
+      var hasST = !!window.ScrollTrigger;
+      if(hasST) gsap.registerPlugin(ScrollTrigger);
+
+      // Top scroll-progress bar (robust, runs even under reduced motion)
+      if(hasST){
+        gsap.to("#gb-lp-progress", { scaleX:1, ease:"none",
+          scrollTrigger:{ trigger:"body", start:"top top", end:"bottom bottom", scrub:.3 } });
+
+        // Nav: hide on scroll-down, show on scroll-up, shrink past the fold
+        var nav = document.querySelector('.gb-lp-nav');
+        ScrollTrigger.create({ start:0, end:"max", onUpdate:function(self){
+          var y = self.scroll();
+          nav.classList.toggle('gb-lp-shrink', y > 40);
+          if(y > 160 && self.direction === 1) nav.classList.add('gb-lp-hide');
+          else nav.classList.remove('gb-lp-hide');
+        }});
+      }
+
+      if(reduce){ return; }  // respect reduced motion — no entrance/ambient animation
+
+      // ---- Hero load timeline (bold, clearly visible) ----
+      var tl = gsap.timeline({ defaults:{ ease:"power3.out" } });
+      tl.from('.gb-lp-ln > span', { yPercent:120, duration:1.05, stagger:.13, ease:"power4.out" }, .05);
+      tl.from('.gb-lp-shift, .gb-lp-hero-lead, .gb-lp-hero-cta, .gb-lp-trust',
+              { y:42, opacity:0, duration:.9, stagger:.12 }, .25);
+      tl.from('.gb-lp-hero-art', { opacity:0, x:90, scale:.88, duration:1.2, ease:"power3.out" }, .25);
+      tl.from('.gb-lp-echo', { opacity:0, x:-70, duration:1, stagger:.16, ease:"power3.out" }, .55);
+
+      // ambient: float + breathe + sparks (continuous, noticeable)
+      gsap.to('.gb-lp-main',  { y:-18, duration:2.6, ease:"sine.inOut", yoyo:true, repeat:-1 });
+      gsap.to('.gb-lp-main',  { scale:1.05, duration:3.2, ease:"sine.inOut", yoyo:true, repeat:-1 });
+      gsap.to('.gb-lp-echo',  { x:"+=10", duration:2.2, ease:"sine.inOut", yoyo:true, repeat:-1, stagger:.25 });
+      gsap.to('.gb-lp-spark', { y:-16, duration:2.1, ease:"sine.inOut", yoyo:true, repeat:-1, stagger:.4 });
+
+      // ---- Magnetic primary CTAs (fine-pointer devices only) ----
+      if(window.matchMedia("(hover:hover) and (pointer:fine)").matches){
+        gsap.utils.toArray('.gb-lp-btn-primary').forEach(function(btn){
+          var xTo = gsap.quickTo(btn,"x",{ duration:.4, ease:"power3" });
+          var yTo = gsap.quickTo(btn,"y",{ duration:.4, ease:"power3" });
+          btn.addEventListener('mousemove', function(e){
+            var r = btn.getBoundingClientRect();
+            xTo((e.clientX - (r.left + r.width/2)) * .35);
+            yTo((e.clientY - (r.top + r.height/2)) * .5);
+          });
+          btn.addEventListener('mouseleave', function(){ xTo(0); yTo(0); });
+        });
+      }
+
+      if(!hasST) return;
+
+      // ---- Generic scroll reveals ----
+      gsap.utils.toArray('[data-anim="up"]').forEach(function(el){
+        gsap.from(el, { y:58, opacity:0, duration:.95, ease:"power3.out",
+          scrollTrigger:{ trigger:el, start:"top 88%" } });
+      });
+      // staggered pillar cards (per-card trigger — reliable, never left hidden)
+      gsap.utils.toArray('[data-anim="card"]').forEach(function(el,i){
+        gsap.from(el, { y:70, opacity:0, scale:.97, duration:.9, ease:"power3.out", delay:i*0.1,
+          scrollTrigger:{ trigger:el, start:"top 88%" } });
+      });
+
+      // ---- Hero parallax: arrow trail drifts on scroll ----
+      gsap.to('.gb-lp-hero-art', { yPercent:-12, ease:"none",
+        scrollTrigger:{ trigger:'.gb-lp-hero', start:"top top", end:"bottom top", scrub:true } });
+
+      // ---- Drifting background arrow fields (beat + CTA) ----
+      gsap.utils.toArray('.gb-lp-floaters').forEach(function(field){
+        var arr = field.querySelectorAll('.gb-lp-fa');
+        // drift the arrows; parallax the whole field (different transform targets — no conflict)
+        gsap.to(arr, { y:"+=30", x:"+=14", rotation:6, duration:4.5, ease:"sine.inOut", yoyo:true, repeat:-1, stagger:{ each:.6, from:"random" } });
+        gsap.to(field, { yPercent:-24, ease:"none",
+          scrollTrigger:{ trigger:field.parentNode, start:"top bottom", end:"bottom top", scrub:true } });
+      });
+
+      // ---- Stat count-ups ----
+      gsap.utils.toArray('.gb-lp-count').forEach(function(el){
+        var to = parseInt(el.getAttribute('data-to'),10) || 0;
+        var obj = { v:0 };
+        ScrollTrigger.create({ trigger:el, start:"top 88%", once:true, onEnter:function(){
+          gsap.to(obj, { v:to, duration:1.4, ease:"power2.out",
+            onUpdate:function(){ el.textContent = Math.round(obj.v); } });
+        }});
+      });
+
+      // ---- The "shift" beat: reveal + the connector bar fills DIGITAL -> AGENTIC on scroll ----
+      gsap.utils.toArray('.gb-lp-beat [data-anim="beat"]').forEach(function(el){
+        gsap.from(el, { y:44, opacity:0, duration:.9, ease:"power3.out",
+          scrollTrigger:{ trigger:el, start:"top 86%" } });
+      });
+      gsap.fromTo('.gb-lp-beat-rail .gb-lp-fill', { scaleX:0 },
+        { scaleX:1, ease:"none",
+          scrollTrigger:{ trigger:'.gb-lp-beat', start:"top 72%", end:"bottom 72%", scrub:.6 } });
+      gsap.fromTo('.gb-lp-beat-rail .gb-lp-tag.gb-lp-end', { color:"#9FC4C2" },
+        { color:"#BFD732", scrollTrigger:{ trigger:'.gb-lp-beat', start:"center 75%", toggleActions:"play none none reverse" } });
+
+      // Recalculate once fonts are in (web fonts shift layout/trigger positions)
+      if(document.fonts && document.fonts.ready){ document.fonts.ready.then(function(){ ScrollTrigger.refresh(); }); }
+      ScrollTrigger.refresh();
+    })();
+  </script>
+</body>
+</html>
