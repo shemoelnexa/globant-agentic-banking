@@ -3,94 +3,19 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Agentic Banking — Design Options · Globant</title>
-  <meta name="description" content="Choose a design direction for the Globant Agentic Banking GCC landing page." />
+  <title>Agentic Banking for the GCC | Globant Finance Studio</title>
+  <meta name="description" content="The shift from digital to AI at the core of GCC banking. Globant's Finance Studio builds agentic operating models in production, delivered by AI Pods." />
+  <!-- Single design going forward: index points to option-1.html -->
+  <meta http-equiv="refresh" content="0; url=option-1.html" />
+  <link rel="canonical" href="option-1.html" />
   <style>
-    @font-face { font-family:"Heebo"; src:url("assets/fonts/heebo.woff2") format("woff2"); font-weight:100 900; font-style:normal; font-display:swap; }
-    @font-face { font-family:"Open Sans"; src:url("assets/fonts/opensans.woff2") format("woff2"); font-weight:300 800; font-style:normal; font-display:swap; }
-
-    :root{
-      --navy:#00292E; --lime:#BFD732; --turq:#38EFA0; --mint:#63E3CF;
-      --paper:#FFFFFF; --mist:#F5F6F7; --muted:#516568; --line:#E4EAEA;
-    }
-    *,*::before,*::after{ box-sizing:border-box; }
-    body{
-      margin:0; min-height:100vh; font-family:"Open Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-      color:var(--navy); background:var(--mist);
-      display:flex; flex-direction:column; align-items:center; justify-content:center;
-      padding:clamp(28px,6vw,72px); -webkit-font-smoothing:antialiased;
-    }
-    .wrap{ width:100%; max-width:1040px; }
-    .head{ text-align:center; margin-bottom:clamp(28px,4vw,48px); }
-    .logo{ height:26px; width:auto; margin:0 auto 1.6rem; display:block; }
-    .kicker{ font-family:"Heebo",sans-serif; font-weight:700; font-size:.74rem; letter-spacing:.24em; text-transform:uppercase; color:var(--muted); }
-    h1{ font-family:"Heebo",sans-serif; font-weight:800; letter-spacing:-.02em; line-height:1.05;
-        font-size:clamp(1.9rem,4vw,2.9rem); margin:.7rem 0 .5rem; }
-    .sub{ color:var(--muted); font-size:clamp(1rem,1.4vw,1.12rem); max-width:46ch; margin:0 auto; }
-
-    .grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(18px,2.4vw,28px); }
-    @media (max-width:720px){ .grid{ grid-template-columns:1fr; } }
-
-    .card{
-      display:flex; flex-direction:column; background:var(--paper); border:1px solid var(--line);
-      border-radius:20px; overflow:hidden; text-decoration:none; color:inherit;
-      box-shadow:0 1px 2px rgba(0,41,46,.04);
-      transition:transform .25s cubic-bezier(.22,.61,.36,1), box-shadow .3s, border-color .3s;
-    }
-    .card:hover{ transform:translateY(-6px); box-shadow:0 30px 60px -30px rgba(0,41,46,.34); border-color:transparent; }
-    .card:focus-visible{ outline:3px solid var(--lime); outline-offset:3px; }
-    .shot{ aspect-ratio:16/10; overflow:hidden; border-bottom:1px solid var(--line); background:var(--mist); }
-    .shot img{ width:100%; height:100%; object-fit:cover; object-position:top center; display:block;
-               transition:transform .5s cubic-bezier(.22,.61,.36,1); }
-    .card:hover .shot img{ transform:scale(1.03); }
-    .body{ padding:clamp(20px,2.4vw,28px); display:flex; flex-direction:column; gap:.55rem; flex:1; }
-    .tag{ font-family:"Heebo",sans-serif; font-weight:700; font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:#5F6D0B; }
-    .card h2{ font-family:"Heebo",sans-serif; font-weight:800; letter-spacing:-.01em; font-size:1.3rem; margin:0; }
-    .card p{ margin:0; color:var(--muted); font-size:.95rem; line-height:1.55; }
-    .go{ margin-top:auto; padding-top:.9rem; font-family:"Heebo",sans-serif; font-weight:700; font-size:.95rem;
-         color:var(--navy); display:inline-flex; align-items:center; gap:.45em; }
-    .go svg{ width:.7em; height:.92em; fill:var(--lime); transition:transform .25s; }
-    .card:hover .go svg{ transform:translateX(4px); }
-
-    .foot{ text-align:center; margin-top:clamp(24px,3vw,36px); font-size:.8rem; color:var(--muted); }
+    html,body{ margin:0; height:100%; }
+    body{ font-family:"Open Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+          background:#F5F6F7; color:#00292E; display:grid; place-items:center; }
+    a{ color:#5F6D0B; font-weight:700; }
   </style>
 </head>
 <body>
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <symbol id="arrow" viewBox="492 33 74 108"><path d="M500.24,35.53A3.92,3.92,0,0,0,494.51,40L502,51.17a64.82,64.82,0,0,1,0,72.11l-7.48,11.16a3.92,3.92,0,0,0,5.72,4.48l62.71-47.77a4.91,4.91,0,0,0,0-7.82Z"/></symbol>
-  </svg>
-
-  <div class="wrap">
-    <header class="head">
-      <img class="logo" src="assets/logos/globant-black.svg" alt="Globant" />
-      <span class="kicker">Agentic Banking · GCC</span>
-      <h1>Landing page — design options</h1>
-      <p class="sub">Two directions for the same brief. Open either to preview the full page.</p>
-    </header>
-
-    <div class="grid">
-      <a class="card" href="option-1.html">
-        <div class="shot"><img src="assets/previews/option-1.png" alt="Preview of Option 1 — Forward / The Arrow" /></div>
-        <div class="body">
-          <span class="tag">Option 1</span>
-          <h2>Forward / The Arrow</h2>
-          <p>Vector-led and editorial. The Globant arrow as the signature device, motion-rich scroll storytelling, light with earned-navy beats — no photography.</p>
-          <span class="go">View option 1 <svg aria-hidden="true"><use href="#arrow"/></svg></span>
-        </div>
-      </a>
-
-      <a class="card" href="option-2.html">
-        <div class="shot"><img src="assets/previews/option-2.png" alt="Preview of Option 2 — full-width image bands" /></div>
-        <div class="body">
-          <span class="tag">Option 2</span>
-          <h2>Full-width imagery</h2>
-          <p>The same system with full-bleed image bands on the hero, wealth and final CTA. Branded slots now, ready for approved/licensed photography.</p>
-          <span class="go">View option 2 <svg aria-hidden="true"><use href="#arrow"/></svg></span>
-        </div>
-      </a>
-    </div>
-
-    <p class="foot">Globant Finance Studio · For UAE, KSA, Qatar &amp; Bahrain — exploration, pending final sign-off.</p>
-  </div>
+  <p>Loading the Agentic Banking landing page&hellip; <a href="option-1.html">Continue</a></p>
 </body>
 </html>

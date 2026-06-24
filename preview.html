@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Globant — Agentic Banking</title>
+<style>
+/* ============================================================
+   Globant Agentic Banking — GCC landing page
+   Internal build. Body-only embed; all rules namespaced gb-lp-.
+   ============================================================ */
+
+@font-face{
+  font-family:"Heebo";
+  src:url("assets/fonts/heebo.woff2") format("woff2");
+  font-weight:100 900; font-display:swap; font-style:normal;
+}
+@font-face{
+  font-family:"Open Sans";
+  src:url("assets/fonts/opensans.woff2") format("woff2");
+  font-weight:300 800; font-display:swap; font-style:normal;
+}
+
+.gb-lp-root{
+  --gb-navy:#00292E;
+  --gb-lime:#BFD732;
+  --gb-turq:#38EFA0;
+  --gb-mint:#63E3CF;
+  --gb-magenta:#E61587;
+  --gb-purple:#662D91;
+  --gb-paper:#FFFFFF;
+  --gb-mist:#F5F6F7;
+  --gb-ink:#0d1c1f;
+
+  /* placeholder visuals — temporary scaffolding */
+  --gb-ph-line:#c9d0d1;
+  --gb-ph-fill:#eef0f0;
+  --gb-ph-ink:#8a9799;
+
+  font-family:"Open Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  color:var(--gb-ink);
+  background:var(--gb-paper);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.gb-lp-root *{box-sizing:border-box;}
+.gb-lp-root h1,.gb-lp-root h2,.gb-lp-root h3,.gb-lp-root h4{
+  font-family:"Heebo","Open Sans",sans-serif;
+  line-height:1.06; margin:0; letter-spacing:-.01em; font-weight:800;
+}
+.gb-lp-root p{margin:0;}
+.gb-lp-root a{color:inherit;text-decoration:none;}
+.gb-lp-wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+
+/* ---------- placeholder primitives (scaffolding) ---------- */
+.gb-lp-ph{
+  border:1.5px dashed var(--gb-ph-line);
+  background:
+    repeating-linear-gradient(135deg,transparent 0 13px,rgba(0,41,46,.035) 13px 14px),
+    var(--gb-ph-fill);
+  border-radius:6px;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  color:var(--gb-ph-ink);
+  font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;font-weight:700;
+  padding:18px;min-height:120px;
+}
+.gb-lp-ph small{display:block;font-weight:400;text-transform:none;letter-spacing:0;margin-top:5px;opacity:.85;}
+
+/* note tags in the margin — internal scaffolding markers */
+.gb-lp-note{
+  font-family:"Open Sans",sans-serif;
+  display:inline-block;font-size:11px;font-weight:700;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--gb-ph-ink);
+  border:1px solid var(--gb-ph-line);border-radius:3px;padding:3px 8px;background:#fff;
+}
+
+/* ---------- top bar (draft) ---------- */
+.gb-lp-nav{
+  display:flex;align-items:center;gap:28px;
+  padding:18px 28px;max-width:1180px;margin:0 auto;
+  border-bottom:1px solid #e7eaea;
+}
+.gb-lp-nav__logo{height:26px;width:auto;display:block;}
+.gb-lp-nav__links{display:flex;gap:22px;margin-left:auto;align-items:center;flex-wrap:wrap;}
+.gb-lp-nav__links a{font-size:14.5px;color:#33474a;}
+.gb-lp-nav__placeholder{
+  color:var(--gb-ph-ink);font-size:13px;border:1px dashed var(--gb-ph-line);
+  border-radius:4px;padding:5px 10px;
+}
+.gb-lp-nav__cta{
+  background:var(--gb-lime);color:var(--gb-navy);font-weight:700;
+  font-size:14px;padding:9px 16px;border-radius:4px;
+}
+
+/* ---------- hero (most resolved) ---------- */
+.gb-lp-hero{background:var(--gb-navy);color:#fff;position:relative;overflow:hidden;}
+.gb-lp-hero__grid{
+  display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;
+  padding:74px 0 84px;
+}
+.gb-lp-eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gb-lime);margin-bottom:22px;
+}
+.gb-lp-eyebrow::before{content:"";width:26px;height:2px;background:var(--gb-lime);display:block;}
+.gb-lp-hero h1{font-size:clamp(38px,5.4vw,68px);max-width:11ch;}
+.gb-lp-hero h1 em{font-style:normal;color:var(--gb-lime);}
+.gb-lp-hero__lead{
+  margin-top:24px;font-size:18px;color:#c5d6d4;max-width:46ch;
+}
+.gb-lp-hero__cta{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;}
+.gb-lp-btn{
+  display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:15px;
+  padding:14px 24px;border-radius:5px;cursor:pointer;border:1.5px solid transparent;
+}
+.gb-lp-btn--primary{background:var(--gb-lime);color:var(--gb-navy);}
+.gb-lp-btn--ghost{border-color:#3a5256;color:#fff;}
+.gb-lp-hero__visual{
+  min-height:330px;border-radius:8px;
+  border:1.5px dashed #355054;
+  background:repeating-linear-gradient(135deg,transparent 0 15px,rgba(191,215,50,.06) 15px 16px),rgba(255,255,255,.02);
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  color:#7fa0a2;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;font-weight:700;padding:24px;
+}
+.gb-lp-hero__visual small{display:block;text-transform:none;letter-spacing:0;font-weight:400;margin-top:6px;color:#6b8c8e;}
+/* signature lime arrow motif */
+.gb-lp-arrow{position:absolute;right:-40px;bottom:-30px;width:220px;height:auto;opacity:.10;color:var(--gb-lime);}
+
+/* ---------- generic section ---------- */
+.gb-lp-sec{padding:78px 0;}
+.gb-lp-sec--mist{background:var(--gb-mist);}
+.gb-lp-sec--navy{background:var(--gb-navy);color:#fff;}
+.gb-lp-kicker{
+  font-size:13px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;
+  color:#5a7174;margin-bottom:16px;
+}
+.gb-lp-sec--navy .gb-lp-kicker{color:var(--gb-lime);}
+.gb-lp-h2{font-size:clamp(28px,3.5vw,44px);max-width:18ch;}
+.gb-lp-lead{margin-top:18px;font-size:17px;color:#46585b;max-width:60ch;}
+.gb-lp-sec--navy .gb-lp-lead{color:#bfd2d0;}
+
+/* the shift beat */
+.gb-lp-shift__row{display:flex;align-items:center;gap:26px;margin-top:38px;flex-wrap:wrap;}
+.gb-lp-shift__tag{
+  font-family:"Heebo",sans-serif;font-weight:800;font-size:clamp(22px,3vw,34px);
+  padding:14px 26px;border-radius:6px;
+}
+.gb-lp-shift__from{background:rgba(255,255,255,.07);color:#9fb6b4;}
+.gb-lp-shift__to{background:var(--gb-lime);color:var(--gb-navy);}
+.gb-lp-shift__bar{flex:1;min-width:80px;height:3px;background:linear-gradient(90deg,#2f4a4e,var(--gb-lime));border-radius:2px;}
+
+/* pillars — progressively less finished */
+.gb-lp-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:46px;}
+.gb-lp-card{
+  background:#fff;border:1px solid #e4e8e8;border-radius:9px;padding:28px;
+  display:flex;flex-direction:column;gap:14px;
+}
+.gb-lp-card--draft{
+  border-style:dashed;border-color:var(--gb-ph-line);background:#fbfcfc;
+}
+.gb-lp-card__ico{
+  width:46px;height:46px;border-radius:8px;background:var(--gb-navy);
+  display:flex;align-items:center;justify-content:center;color:var(--gb-lime);font-weight:800;
+}
+.gb-lp-card--draft .gb-lp-card__ico{
+  background:var(--gb-ph-fill);color:var(--gb-ph-ink);border:1.5px dashed var(--gb-ph-line);
+}
+.gb-lp-card h3{font-size:20px;}
+.gb-lp-card p{font-size:14.5px;color:#526466;}
+
+/* wealth */
+.gb-lp-wealth__grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-top:40px;}
+.gb-lp-chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px;}
+.gb-lp-chip{
+  border:1.5px dashed var(--gb-ph-line);border-radius:30px;padding:9px 18px;
+  font-size:14px;font-weight:700;color:#3c4e50;background:#fff;
+}
+
+/* proof */
+.gb-lp-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:42px;}
+.gb-lp-stat__num{font-family:"Heebo",sans-serif;font-weight:800;font-size:clamp(38px,5vw,58px);color:var(--gb-lime);line-height:1;}
+.gb-lp-stat__lbl{margin-top:10px;font-size:14.5px;color:#bfd2d0;max-width:24ch;}
+.gb-lp-logos{
+  display:flex;flex-wrap:wrap;align-items:center;gap:30px;margin-top:50px;
+  padding-top:34px;border-top:1px solid rgba(255,255,255,.12);
+}
+.gb-lp-logos img{height:26px;width:auto;opacity:.85;filter:brightness(0) invert(1);}
+.gb-lp-logos__slot{
+  width:108px;height:30px;border:1.5px dashed #3a5256;border-radius:4px;
+  display:flex;align-items:center;justify-content:center;color:#6b8c8e;font-size:10.5px;letter-spacing:.05em;
+}
+.gb-lp-logos__note{flex-basis:100%;font-size:12px;color:#7d9698;margin-top:8px;}
+
+/* report / pardot */
+.gb-lp-report__grid{display:grid;grid-template-columns:1fr .9fr;gap:46px;align-items:center;margin-top:8px;}
+.gb-lp-report__list{margin-top:24px;display:flex;flex-direction:column;gap:14px;}
+.gb-lp-report__list li{list-style:none;display:flex;gap:12px;font-size:15.5px;color:#46585b;}
+.gb-lp-report__list li::before{content:"";flex:0 0 8px;height:8px;border-radius:50%;background:var(--gb-lime);margin-top:8px;}
+.gb-lp-form{
+  border:1.5px dashed var(--gb-ph-line);border-radius:10px;background:#fff;
+  padding:34px 28px;text-align:center;color:var(--gb-ph-ink);min-height:300px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+}
+.gb-lp-form__title{font-weight:700;font-size:14px;letter-spacing:.05em;text-transform:uppercase;}
+.gb-lp-form__sub{font-size:13px;color:#9aa7a8;max-width:30ch;}
+.gb-lp-form__skeleton{width:100%;max-width:300px;margin-top:14px;display:flex;flex-direction:column;gap:10px;}
+.gb-lp-form__skeleton span{height:38px;border-radius:5px;background:var(--gb-ph-fill);display:block;}
+.gb-lp-form__skeleton .gb-lp-form__btn{background:var(--gb-ph-line);height:42px;}
+
+/* final cta */
+.gb-lp-final{background:var(--gb-navy);color:#fff;text-align:center;}
+.gb-lp-final .gb-lp-h2{margin:0 auto;}
+.gb-lp-final .gb-lp-chips{justify-content:center;}
+.gb-lp-final .gb-lp-chip{border-color:#3a5256;color:#cfe0de;background:transparent;}
+.gb-lp-final .gb-lp-btn{margin-top:32px;}
+
+/* footer (draft) */
+.gb-lp-foot{background:#001a1d;color:#7d9698;font-size:13px;padding:34px 0;}
+.gb-lp-foot__row{display:flex;gap:26px;flex-wrap:wrap;align-items:center;}
+.gb-lp-foot img{height:20px;opacity:.7;filter:brightness(0) invert(1);}
+.gb-lp-foot__legal{flex-basis:100%;margin-top:14px;opacity:.6;line-height:1.5;}
+
+/* responsive */
+@media(max-width:880px){
+  .gb-lp-hero__grid,.gb-lp-wealth__grid,.gb-lp-report__grid{grid-template-columns:1fr;}
+  .gb-lp-pillars,.gb-lp-stats{grid-template-columns:1fr;}
+  .gb-lp-hero__visual{min-height:200px;}
+  .gb-lp-nav__links{gap:14px;}
+}
+</style>
+</head>
+<body>
+<div class="gb-lp-root">
+
+  <!-- inline arrow symbol (signature device) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="gb-lp-arrow" viewBox="0 0 100 120">
+      <path fill="currentColor" d="M40 0h20v74l22-22 14 14-46 46-46-46 14-14 22 22z"/>
+    </symbol>
+  </svg>
+
+  <!-- ===================== NAV (draft) ===================== -->
+  <nav class="gb-lp-nav">
+    <img class="gb-lp-nav__logo" src="assets/logos/globant-black.svg" alt="Globant" />
+    <div class="gb-lp-nav__links">
+      <a href="#shift">The shift</a>
+      <a href="#capabilities">What changes</a>
+      <span class="gb-lp-nav__placeholder">Wealth · Proof · Report — nav order TBD</span>
+      <a class="gb-lp-nav__cta" href="#talk">Talk to our Finance Studio</a>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <header class="gb-lp-hero">
+    <svg class="gb-lp-arrow"><use href="#gb-lp-arrow"/></svg>
+    <div class="gb-lp-wrap">
+      <div class="gb-lp-hero__grid">
+        <div>
+          <span class="gb-lp-eyebrow">Agentic Banking · GCC</span>
+          <h1>The shift that defines the next decade of <em>GCC banking</em></h1>
+          <p class="gb-lp-hero__lead">Every bank in the GCC went digital — but digital was a tool layered on top of the existing operating model. The Agentic Bank is built around AI at the core: agents that anticipate customer intent, act across the operating model, and decide in real time, within the rules your institution defines. AI is no longer a feature inside a digital bank — it is the operating model.</p>
+          <div class="gb-lp-hero__cta">
+            <a class="gb-lp-btn gb-lp-btn--primary" href="#talk">Talk to our Finance Studio →</a>
+            <a class="gb-lp-btn gb-lp-btn--ghost" href="#report">Get the 2026 report</a>
+          </div>
+        </div>
+        <div class="gb-lp-hero__visual">
+          Hero visual
+          <small>Vector / brand motif — pending art direction &amp; sign-off</small>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== THE SHIFT (navy beat) ===================== -->
+  <section class="gb-lp-sec gb-lp-sec--navy" id="shift">
+    <div class="gb-lp-wrap">
+      <p class="gb-lp-kicker">The shift</p>
+      <h2 class="gb-lp-h2">From digital information to intelligent, self-running banking</h2>
+      <p class="gb-lp-lead">Agentic banking means systems that act within defined guardrails — not waiting for a human to approve every decision, but accountable to the rules your institution sets.</p>
+      <div class="gb-lp-shift__row">
+        <span class="gb-lp-shift__tag gb-lp-shift__from">DIGITAL</span>
+        <span class="gb-lp-shift__bar"></span>
+        <span class="gb-lp-shift__tag gb-lp-shift__to">AGENTIC</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CAPABILITIES / PILLARS ===================== -->
+  <section class="gb-lp-sec" id="capabilities">
+    <div class="gb-lp-wrap">
+      <p class="gb-lp-kicker">What changes when a bank runs on agents</p>
+      <h2 class="gb-lp-h2">Three capabilities that define the agentic bank</h2>
+      <div class="gb-lp-pillars">
+
+        <!-- pillar 1: resolved -->
+        <article class="gb-lp-card">
+          <div class="gb-lp-card__ico">01</div>
+          <h3>Intelligent decisioning at speed</h3>
+          <p>Credit decisions, fraud detection, risk scoring, compliance checks — orchestrated by AI agents that act within defined guardrails. Not rules engines. Not static models. Living systems that learn, adapt, and enforce policy at a speed no manual process can match.</p>
+        </article>
+
+        <!-- pillar 2: draft -->
+        <article class="gb-lp-card gb-lp-card--draft">
+          <div class="gb-lp-card__ico">02</div>
+          <h3>Always-on client experience</h3>
+          <p>The Agentic Bank knows what clients need before they ask. Agents handle data, analysis and first response; your people handle the relationship, the judgment, and the moment that matters. The human touch stays. The manual work doesn't.</p>
+          <span class="gb-lp-note">icon + supporting visual to come</span>
+        </article>
+
+        <!-- pillar 3: draft / copy block only -->
+        <article class="gb-lp-card gb-lp-card--draft">
+          <div class="gb-lp-card__ico">03</div>
+          <h3>Open banking &amp; the connected ecosystem</h3>
+          <p>CBUAE Open Finance and SAMA Open Banking aren't compliance obligations — they're the architecture of a financial institution that can grow without walls. Interoperable platforms connecting regional payment rails, open finance, wealth networks and AI decisioning.</p>
+          <span class="gb-lp-note">layout to align with cards 01–02</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WEALTH (GCC) ===================== -->
+  <section class="gb-lp-sec gb-lp-sec--mist">
+    <div class="gb-lp-wrap">
+      <div class="gb-lp-wealth__grid">
+        <div>
+          <p class="gb-lp-kicker">Wealth management · GCC</p>
+          <h2 class="gb-lp-h2">Where agentic AI changes wealth management in the GCC</h2>
+          <p class="gb-lp-lead">A client base spanning ultra-high-net-worth individuals, sovereign wealth, family offices and a fast-growing mass-affluent segment — each needing a different level of personalisation, compliance posture and relationship. Agentic AI makes all of it possible at scale.</p>
+          <div class="gb-lp-chips">
+            <span class="gb-lp-chip">Ultra-HNW individuals</span>
+            <span class="gb-lp-chip">Sovereign wealth</span>
+            <span class="gb-lp-chip">Family offices</span>
+            <span class="gb-lp-chip">Mass-affluent</span>
+          </div>
+        </div>
+        <div class="gb-lp-ph" style="min-height:300px">
+          Section visual
+          <small>GCC wealth imagery — licensed photo or vector, pending brand sign-off</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROOF ===================== -->
+  <section class="gb-lp-sec gb-lp-sec--navy">
+    <div class="gb-lp-wrap">
+      <p class="gb-lp-kicker">Proof</p>
+      <h2 class="gb-lp-h2">Built in production. Not promised in a pilot.</h2>
+      <p class="gb-lp-lead">Globant's Financial Services AI Studio builds AI operating models — in production, at regulated financial institutions, measured against real business outcomes.</p>
+
+      <div class="gb-lp-stats">
+        <div>
+          <div class="gb-lp-stat__num">300+</div>
+          <div class="gb-lp-stat__lbl">financial institutions served</div>
+        </div>
+        <div>
+          <div class="gb-lp-stat__num">5</div>
+          <div class="gb-lp-stat__lbl">of the top 10 global banks</div>
+        </div>
+        <div>
+          <div class="gb-lp-stat__num">20+</div>
+          <div class="gb-lp-stat__lbl">years of BFSI delivery</div>
+        </div>
+      </div>
+
+      <div class="gb-lp-logos">
+        <img src="assets/logos/santander.svg" alt="Santander" />
+        <img src="assets/logos/finastra.svg" alt="Finastra" />
+        <span class="gb-lp-logos__slot">+ client</span>
+        <span class="gb-lp-logos__slot">+ client</span>
+        <span style="width:40px"></span>
+        <img src="assets/logos/aws.svg" alt="AWS" />
+        <img src="assets/logos/salesforce.svg" alt="Salesforce" />
+        <img src="assets/logos/sap.svg" alt="SAP" />
+        <span class="gb-lp-logos__slot">+ partner</span>
+        <p class="gb-lp-logos__note">Client &amp; partner marks shown for reference. Each requires usage sign-off before publication. Final selection &amp; order to be confirmed.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== AI PODS (delivery model) ===================== -->
+  <section class="gb-lp-sec">
+    <div class="gb-lp-wrap">
+      <p class="gb-lp-kicker">Delivery model</p>
+      <h2 class="gb-lp-h2">AI Pods — from proof-of-concept to production, fast</h2>
+      <p class="gb-lp-lead">Globant is the Agentic Banking builder — and AI Pods are how we get you there. Small, AI-certified, cross-functional teams (AI engineers, data scientists, BFSI domain experts and compliance specialists) with full ownership, moving from proof-of-concept to production fast — inside the regulatory guardrails your market requires.</p>
+      <div class="gb-lp-ph" style="margin-top:32px;min-height:150px">
+        Diagram — POC → production timeline
+        <small>Pod model &amp; speed-to-production illustration to be designed</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== REPORT / PARDOT ===================== -->
+  <section class="gb-lp-sec gb-lp-sec--mist" id="report">
+    <div class="gb-lp-wrap">
+      <p class="gb-lp-kicker">Smart Banking 2026</p>
+      <div class="gb-lp-report__grid">
+        <div>
+          <h2 class="gb-lp-h2">Reinventing banking from the inside out</h2>
+          <p class="gb-lp-lead">Globant's GCC financial-services thought-leadership report — practical, evidence-based, and built for the GCC context.</p>
+          <ul class="gb-lp-report__list">
+            <li>The GCC regulatory landscape — CBUAE Open Finance and SAMA Open Banking</li>
+            <li>The Islamic banking architecture for agentic systems</li>
+            <li>The agentic capabilities that define the next decade</li>
+          </ul>
+        </div>
+        <div class="gb-lp-form">
+          <div class="gb-lp-form__title">Pardot form embed</div>
+          <div class="gb-lp-form__sub">Globant-hosted form goes here — a few details and the PDF is yours.</div>
+          <div class="gb-lp-form__skeleton">
+            <span></span><span></span><span></span>
+            <span class="gb-lp-form__btn"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FINAL CTA ===================== -->
+  <section class="gb-lp-sec gb-lp-final" id="talk">
+    <div class="gb-lp-wrap">
+      <p class="gb-lp-kicker">Talk to our Finance Studio</p>
+      <h2 class="gb-lp-h2" style="font-size:clamp(30px,4vw,48px)">Ready to move from digital to agentic?</h2>
+      <p class="gb-lp-lead" style="margin-left:auto;margin-right:auto">Our GCC finance specialists are available to discuss your institution's specific priorities.</p>
+      <div class="gb-lp-chips">
+        <span class="gb-lp-chip">Intelligent decisioning</span>
+        <span class="gb-lp-chip">Wealth management AI</span>
+        <span class="gb-lp-chip">Open banking architecture</span>
+        <span class="gb-lp-chip">Legacy modernisation</span>
+      </div>
+      <a class="gb-lp-btn gb-lp-btn--primary" href="#">Book a conversation →</a>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER (draft) ===================== -->
+  <footer class="gb-lp-foot">
+    <div class="gb-lp-wrap">
+      <div class="gb-lp-foot__row">
+        <img src="assets/logos/globant-white.svg" alt="Globant" />
+        <span>Finance Studio · GCC</span>
+        <span style="margin-left:auto" class="gb-lp-note">footer links &amp; legal — to finalise</span>
+      </div>
+      <p class="gb-lp-foot__legal">© Globant. For UAE, KSA, Qatar &amp; Bahrain financial institutions. Client and partner marks are the property of their respective owners and shown for reference pending usage sign-off.</p>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
