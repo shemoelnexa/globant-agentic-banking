@@ -206,11 +206,13 @@
     .gb-lp-proof-head p{ color:var(--muted); }
     .gb-lp-proof-line{ margin-top:clamp(30px,3.6vw,46px); font-family:var(--head); font-weight:600; color:var(--navy); font-size:1.05rem; }
     .gb-lp-logos-l{ font-family:var(--head); font-weight:700; font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:var(--muted-2); margin:clamp(34px,4vw,52px) 0 1.3rem; }
-    .gb-lp-logos{ display:flex; flex-wrap:wrap; align-items:center; gap:clamp(24px,4vw,52px); }
-    .gb-lp-logos img{ height:28px; width:auto; opacity:.78; transition:opacity .25s, transform .25s; }
+    .gb-lp-logos{ display:flex; flex-wrap:nowrap; align-items:center; gap:clamp(14px,2vw,26px); }
+    .gb-lp-logos img{ height:clamp(30px,3.3vw,44px); width:auto; opacity:.78; transition:opacity .25s, transform .25s; }
+    .gb-lp-logos img[alt="Santander"],.gb-lp-logos img[alt="Finastra"]{ height:clamp(18px,2.1vw,27px); }
     .gb-lp-logos a:hover img{ opacity:1; transform:translateY(-2px); }
-    .gb-lp-logos .gb-lp-sep{ width:1px; height:26px; background:var(--line-2); }
-    .gb-lp-logos-note{ margin-top:3.6rem; font-size:.78rem; color:var(--muted-2); }
+    .gb-lp-logos .gb-lp-sep{ width:1px; height:40px; background:var(--line-2); flex:0 0 auto; }
+    .gb-lp-logos-note{ margin-top:7rem; font-size:.78rem; color:var(--muted-2); }
+    @media (max-width:860px){ .gb-lp-logos{ flex-wrap:wrap; gap:clamp(20px,5vw,34px); } .gb-lp-logos-note{ margin-top:4.5rem; } }
     @media (max-width:760px){ .gb-lp-proof-head{ grid-template-columns:1fr; } }
 
     /* =========================================================
@@ -423,7 +425,7 @@
 
       <!-- ============ image band ============ -->
       <figure class="gb-lp-imgband">
-        <img src="assets/img/hero.jpg" alt="A GCC financial district skyline at dusk" loading="lazy" />
+        <img src="assets/img/hero.jpg" alt="A busy banking team working across financial dashboards" loading="lazy" />
         <figcaption><div class="gb-lp-wrap"><span>Building the agentic bank for the GCC.</span></div></figcaption>
       </figure>
 
@@ -535,7 +537,6 @@
               <a href="#gb-lp-hero-form" aria-label="Sitecore"><img src="assets/logos/sitecore.svg" alt="Sitecore" /></a>
               <a href="#gb-lp-hero-form" aria-label="Adobe"><img src="assets/logos/adobe.svg" alt="Adobe" /></a>
             </div>
-            <p class="gb-lp-logos-note">Client and partner marks shown for reference. Each requires usage sign-off before publication.</p>
           </div>
         </div>
       </section>
@@ -579,7 +580,7 @@
           <div class="gb-lp-cases">
             <!-- CASE A: Data migration -->
             <article class="gb-lp-case" data-anim="card">
-              <figure class="gb-lp-case-photo"><img src="assets/img/cta.jpg" alt="A delivery team working together" loading="lazy"></figure>
+              <figure class="gb-lp-case-photo"><img src="assets/img/cta.jpg" alt="Bank staff assisting a customer at a self-service terminal" loading="lazy"></figure>
               <span class="gb-lp-case-eyebrow"><svg class="gb-lp-ar" aria-hidden="true"><use href="#gb-lp-arrow"/></svg>Data migration</span>
               <h3 class="gb-lp-h3">An Irish bank completed its data migration with Globant</h3>
               <div class="gb-lp-case-metrics">
@@ -612,7 +613,7 @@
 
             <!-- CASE B: Product definition -->
             <article class="gb-lp-case" data-anim="card">
-              <figure class="gb-lp-case-photo"><img src="assets/img/wealth.jpg" alt="Analysts defining a product over laptops and notes" loading="lazy"></figure>
+              <figure class="gb-lp-case-photo"><img src="assets/img/wealth.jpg" alt="An analyst reviewing data dashboards at a workstation" loading="lazy"></figure>
               <span class="gb-lp-case-eyebrow"><svg class="gb-lp-ar" aria-hidden="true"><use href="#gb-lp-arrow"/></svg>Product definition</span>
               <h3 class="gb-lp-h3">AI Pods reimagined product definition at a global bank</h3>
               <div class="gb-lp-case-metrics">

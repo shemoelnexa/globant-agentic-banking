@@ -5,6 +5,9 @@ docs/
 .preview/
 assets/logos/README.md
 
+# Raw source imagery (large originals) — only optimized assets/img/ versions are tracked
+Images_-_Banking_&_Finance-*/
+
 # OS / editor junk
 .DS_Store
 Thumbs.db
