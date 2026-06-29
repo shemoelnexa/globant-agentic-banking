@@ -310,9 +310,9 @@
     .gb-lp-imgband figcaption{ position:absolute; inset:0; z-index:2; display:flex; align-items:center; justify-content:center; text-align:center; }
     .gb-lp-imgband figcaption .gb-lp-wrap{ padding-block:0; }
     .gb-lp-imgband figcaption span{ font-family:var(--head); font-weight:800; color:#fff; font-size:clamp(1.25rem,2.5vw,2rem); letter-spacing:-.012em; max-width:26ch; margin-inline:auto; display:block; text-shadow:0 2px 20px rgba(0,0,0,.35); }
-    .gb-lp-case-photo{ position:relative; margin:calc(-1 * clamp(26px,2.8vw,38px)) calc(-1 * clamp(26px,2.8vw,38px)) 1.7rem; height:176px; border-radius:var(--r) var(--r) 0 0; overflow:hidden; }
+    .gb-lp-case-photo{ position:relative; margin:calc(-1 * clamp(26px,2.8vw,38px)) calc(-1 * clamp(26px,2.8vw,38px)) 1.7rem; height:232px; border-radius:var(--r) var(--r) 0 0; overflow:hidden; }
     .gb-lp-case-photo::after{ content:""; position:absolute; inset:0; background:linear-gradient(160deg,rgba(0,41,46,.14),rgba(0,41,46,.40)); }
-    .gb-lp-case-photo img{ width:100%; height:100%; object-fit:cover; object-position:center; }
+    .gb-lp-case-photo img{ width:100%; height:100%; object-fit:cover; object-position:center 28%; }
     .gb-lp-case{ overflow:hidden; }
     .gb-lp-cta-photo::before{ content:""; position:absolute; inset:0; z-index:0; background:linear-gradient(rgba(245,246,247,.9),rgba(245,246,247,.95)), url("assets/img/hero.jpg") center/cover no-repeat; }
   </style>
@@ -580,7 +580,7 @@
           <div class="gb-lp-cases">
             <!-- CASE A: Data migration -->
             <article class="gb-lp-case" data-anim="card">
-              <figure class="gb-lp-case-photo"><img src="assets/img/cta.jpg" alt="Bank staff assisting a customer at a self-service terminal" loading="lazy"></figure>
+              <figure class="gb-lp-case-photo"><img src="assets/img/cta.jpg" alt="Bank staff assisting a customer at a self-service terminal" loading="lazy" style="object-position:center 18%"></figure>
               <span class="gb-lp-case-eyebrow"><svg class="gb-lp-ar" aria-hidden="true"><use href="#gb-lp-arrow"/></svg>Data migration</span>
               <h3 class="gb-lp-h3">An Irish bank completed its data migration with Globant</h3>
               <div class="gb-lp-case-metrics">
