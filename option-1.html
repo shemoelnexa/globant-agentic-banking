@@ -64,7 +64,7 @@
     .gb-lp-h3{ font-family:var(--head); font-weight:700; line-height:1.16; letter-spacing:-.006em; font-size:clamp(1.18rem,1.7vw,1.42rem); }
     .gb-lp-lead{ font-size:clamp(1rem,1.3vw,1.18rem); color:var(--muted); line-height:1.62; }
     .gb-lp-hl{ color:var(--navy); position:relative; }
-    .gb-lp-hl::after{ content:""; position:absolute; left:0; right:0; bottom:.04em; height:.18em; background:var(--lime); opacity:.55; z-index:-1; border-radius:2px; }
+    .gb-lp-hl::after{ content:""; position:absolute; left:0; right:0; bottom:-.24em; height:.14em; background:var(--lime); opacity:.55; z-index:-1; border-radius:2px; }
 
     .gb-lp-kicker{ font-family:var(--head); font-weight:700; font-size:.72rem; letter-spacing:.22em; text-transform:uppercase; color:var(--muted-2); display:inline-flex; align-items:center; gap:.7em; }
     .gb-lp-kicker .gb-lp-ar{ width:.85em; height:.92em; color:var(--lime); }
@@ -116,9 +116,9 @@
     .gb-lp-shift .gb-lp-rail .gb-lp-ar{ position:absolute; right:-2px; top:50%; transform:translateY(-50%); width:11px; height:12px; color:var(--lime); }
     .gb-lp-shift .gb-lp-to{ color:var(--navy); }
 
-    .gb-lp-ln{ display:block; overflow:hidden; padding-bottom:.14em; margin-bottom:-.14em; }
+    .gb-lp-ln{ display:block; overflow:hidden; padding-bottom:.34em; margin-bottom:-.34em; }
     .gb-lp-ln > span{ display:block; }
-    .gb-lp-hero-lead{ margin-top:1.4rem; max-width:46ch; font-size:clamp(.9rem,1vw,1rem); line-height:1.6; }
+    .gb-lp-hero-copy .gb-lp-hero-lead{ margin-top:clamp(1.9rem,2.8vw,2.6rem); max-width:46ch; font-size:clamp(.9rem,1vw,1rem); line-height:1.6; }
 
     .gb-lp-trust{ margin-top:2.2rem; padding-top:1.8rem; border-top:1px solid var(--line); display:flex; gap:clamp(18px,3vw,40px); flex-wrap:wrap; }
     .gb-lp-trust .gb-lp-n{ font-family:var(--head); font-weight:800; font-size:1.85rem; line-height:1; letter-spacing:-.02em; color:var(--navy); }
@@ -212,6 +212,14 @@
     .gb-lp-logos a:hover img{ opacity:1; transform:translateY(-2px); }
     .gb-lp-logos .gb-lp-sep{ width:1px; height:40px; background:var(--line-2); flex:0 0 auto; }
     .gb-lp-logos-note{ margin-top:7rem; font-size:.78rem; color:var(--muted-2); }
+    /* partnerships that matter */
+    .gb-lp-partners{ margin-top:clamp(40px,5vw,68px); text-align:center; }
+    .gb-lp-partners-h{ font-family:var(--head); font-weight:800; letter-spacing:-.018em; line-height:1.1; font-size:clamp(1.5rem,3vw,2.3rem); color:var(--navy); }
+    .gb-lp-partners .gb-lp-partners-sub{ margin-top:.9rem; color:var(--muted); font-size:clamp(.95rem,1.1vw,1.05rem); }
+    .gb-lp-logos--partners{ flex-wrap:wrap; justify-content:center; gap:clamp(26px,4vw,56px); margin-top:clamp(30px,3.6vw,48px); }
+    .gb-lp-logos--partners img{ height:clamp(34px,4vw,48px); width:auto; opacity:.62; filter:grayscale(1); transition:opacity .25s, filter .25s, transform .25s; }
+    .gb-lp-logos--partners img:hover{ opacity:1; filter:grayscale(0); transform:translateY(-2px); }
+    .gb-lp-partners .gb-lp-partners-note{ margin-top:clamp(28px,3vw,44px); font-size:.76rem; color:var(--muted-2); text-align:center; }
     @media (max-width:860px){ .gb-lp-logos{ flex-wrap:wrap; gap:clamp(20px,5vw,34px); } .gb-lp-logos-note{ margin-top:4.5rem; } }
     @media (max-width:760px){ .gb-lp-proof-head{ grid-template-columns:1fr; } }
 
@@ -282,13 +290,19 @@
     .gb-lp-cta h2{ font-size:clamp(1.85rem,4.1vw,3rem); }
     .gb-lp-cta p{ color:var(--muted); margin-top:1rem; }
     .gb-lp-cta .gb-lp-btn-primary{ margin-top:1.9rem; font-size:1.06rem; padding:1.05em 1.95em; }
-    .gb-lp-footer{ border-top:1px solid var(--line); margin-top:clamp(46px,5.5vw,76px); padding-top:2.4rem; }
-    .gb-lp-footer-grid{ display:flex; align-items:center; justify-content:space-between; gap:1.4rem; flex-wrap:wrap; }
-    .gb-lp-footer-logo{ height:28px; width:auto; }
-    .gb-lp-footer-meta{ display:flex; gap:1.5rem; flex-wrap:wrap; align-items:center; }
-    .gb-lp-footer-meta a,.gb-lp-footer-meta span{ font-size:.84rem; color:var(--muted); }
-    .gb-lp-footer-meta a:hover{ color:var(--navy); }
-    .gb-lp-footer-fine{ margin-top:1.6rem; font-size:.76rem; color:var(--muted-2); max-width:74ch; }
+    /* dark footer band (matches Page 1) */
+    .gb-lp-footer{ background:#0B0D0E; color:#fff; }
+    .gb-lp-footer-in{ display:flex; align-items:center; justify-content:space-between; gap:1.2rem 2.2rem; flex-wrap:wrap; padding-block:26px; }
+    .gb-lp-footer-brand img{ height:30px; width:auto; }
+    .gb-lp-footer-copy{ color:rgba(255,255,255,.42); font-size:.82rem; }
+    .gb-lp-footer-links{ display:flex; gap:clamp(1.1rem,2.4vw,2rem); flex-wrap:wrap; align-items:center; }
+    .gb-lp-footer-links a{ color:rgba(255,255,255,.8); font-size:.86rem; font-weight:600; transition:color .15s; }
+    .gb-lp-footer-links a:hover{ color:#fff; }
+    .gb-lp-footer-social{ display:flex; gap:.55rem; }
+    .gb-lp-footer-social a{ width:34px; height:34px; border-radius:50%; border:1px solid rgba(255,255,255,.24); display:grid; place-items:center; color:rgba(255,255,255,.82); transition:border-color .18s, color .18s, background .18s, transform .18s; }
+    .gb-lp-footer-social a:hover{ border-color:var(--lime); background:var(--lime); color:var(--navy); transform:translateY(-2px); }
+    .gb-lp-footer-social svg{ width:15px; height:15px; fill:currentColor; }
+    @media (max-width:720px){ .gb-lp-footer-in{ justify-content:center; text-align:center; } }
 
     /* ---------- drifting background arrow field (light) ---------- */
     .gb-lp-floaters{ position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:0; }
@@ -525,18 +539,19 @@
             <p data-anim="up">Globant's Finance Studio builds agentic operating models in production, at regulated financial institutions, measured against real business outcomes.</p>
           </div>
           <p class="gb-lp-proof-line" data-anim="up">Already delivering for banks, retailers, media and more.</p>
-          <div data-anim="up">
-            <div class="gb-lp-logos-l">Built with the technology ecosystem</div>
-            <div class="gb-lp-logos">
-              <a href="#gb-lp-hero-form" aria-label="Santander"><img src="assets/logos/santander.svg" alt="Santander" /></a>
-              <a href="#gb-lp-hero-form" aria-label="Finastra"><img src="assets/logos/finastra.svg" alt="Finastra" /></a>
-              <span class="gb-lp-sep" aria-hidden="true"></span>
-              <a href="#gb-lp-hero-form" aria-label="AWS"><img src="assets/logos/aws.svg" alt="AWS" /></a>
-              <a href="#gb-lp-hero-form" aria-label="Salesforce"><img src="assets/logos/salesforce.svg" alt="Salesforce" /></a>
-              <a href="#gb-lp-hero-form" aria-label="SAP"><img src="assets/logos/sap.svg" alt="SAP" /></a>
-              <a href="#gb-lp-hero-form" aria-label="Sitecore"><img src="assets/logos/sitecore.svg" alt="Sitecore" /></a>
-              <a href="#gb-lp-hero-form" aria-label="Adobe"><img src="assets/logos/adobe.svg" alt="Adobe" /></a>
+          <div class="gb-lp-partners" data-anim="up">
+            <h3 class="gb-lp-partners-h">Partnerships that matter</h3>
+            <p class="gb-lp-partners-sub">Our ecosystem of partnerships ensures best-in-class capabilities:</p>
+            <div class="gb-lp-logos gb-lp-logos--partners">
+              <img src="assets/logos/azure.svg" alt="Microsoft Azure" loading="lazy" />
+              <img src="assets/logos/googlecloud.svg" alt="Google Cloud" loading="lazy" />
+              <img src="assets/logos/salesforce.svg" alt="Salesforce" loading="lazy" />
+              <img src="assets/logos/oracle.svg" alt="Oracle" loading="lazy" />
+              <img src="assets/logos/servicenow.svg" alt="ServiceNow" loading="lazy" />
+              <img src="assets/logos/uipath.svg" alt="UiPath" loading="lazy" />
+              <img src="assets/logos/nvidia.svg" alt="NVIDIA" loading="lazy" />
             </div>
+            <p class="gb-lp-partners-note">Partner marks are the property of their respective owners and shown for reference pending usage sign-off.</p>
           </div>
         </div>
       </section>
@@ -648,7 +663,7 @@
         </div>
       </section>
 
-      <!-- ============ §7 CLOSING CTA + FOOTER ============ -->
+      <!-- ============ §7 CLOSING CTA ============ -->
       <section id="gb-lp-contact" class="gb-lp-section gb-lp-tint gb-lp-cta-sec gb-lp-cta-photo" aria-labelledby="gb-lp-cta-h">
         <div class="gb-lp-floaters" aria-hidden="true">
           <svg class="gb-lp-ar gb-lp-fa gb-lp-fa1"><use href="#gb-lp-arrow"/></svg>
@@ -663,20 +678,28 @@
             <p data-anim="up">Our GCC finance specialists are available to discuss your institution's specific priorities.</p>
             <a class="gb-lp-btn gb-lp-btn-primary" data-anim="up" href="#gb-lp-hero-form">Request a conversation<svg class="gb-lp-ar" aria-hidden="true"><use href="#gb-lp-arrow"/></svg></a>
           </div>
-          <footer class="gb-lp-footer">
-            <div class="gb-lp-footer-grid">
-              <img class="gb-lp-footer-logo" src="assets/logos/globant-color.svg" alt="Globant" />
-              <div class="gb-lp-footer-meta">
-                <span>Finance Studio, GCC</span>
-                <a href="#gb-lp-cases">Use cases</a>
-                <a href="#gb-lp-hero-form">Contact</a>
-              </div>
-            </div>
-            <p class="gb-lp-footer-fine">© Globant. For UAE, KSA, Qatar and Bahrain financial institutions. Client and partner marks are the property of their respective owners and shown for reference pending usage sign-off.</p>
-          </footer>
         </div>
       </section>
     </main>
+
+    <!-- ============ FOOTER (dark band, matches Page 1) ============ -->
+    <footer class="gb-lp-footer">
+      <div class="gb-lp-wrap gb-lp-footer-in">
+        <a class="gb-lp-footer-brand" href="#gb-lp-top" aria-label="Globant home"><img src="assets/logos/globant-white-green.svg" alt="Globant" /></a>
+        <span class="gb-lp-footer-copy">All rights reserved Globant 2026</span>
+        <nav class="gb-lp-footer-links" aria-label="Legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms and Conditions</a>
+          <a href="#">Cookie Policy</a>
+        </nav>
+        <div class="gb-lp-footer-social">
+          <a href="#" aria-label="Globant on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-4 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.72-2.91l.04-1.68z"/></svg></a>
+          <a href="#" aria-label="Globant on X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.53 3H20.5l-6.5 7.43L21.75 21h-5.98l-4.68-6.12L5.7 21H2.73l6.95-7.95L2.5 3h6.13l4.23 5.6L17.53 3zm-1.05 16.2h1.65L7.6 4.72H5.83L16.48 19.2z"/></svg></a>
+          <a href="#" aria-label="Globant on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 12s0-3.2-.41-4.74a2.4 2.4 0 0 0-1.69-1.7C19.36 5.15 12 5.15 12 5.15s-7.36 0-8.9.41a2.4 2.4 0 0 0-1.69 1.7C1 8.8 1 12 1 12s0 3.2.41 4.74a2.4 2.4 0 0 0 1.69 1.7c1.54.41 8.9.41 8.9.41s7.36 0 8.9-.41a2.4 2.4 0 0 0 1.69-1.7C23 15.2 23 12 23 12zM9.75 14.85v-5.7L14.7 12l-4.95 2.85z"/></svg></a>
+          <a href="#" aria-label="Globant on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zm0 1.62c-3.15 0-3.52.01-4.76.07-1.15.05-1.77.24-2.19.4-.55.22-.94.47-1.35.88-.41.41-.66.8-.88 1.35-.16.42-.35 1.04-.4 2.19-.06 1.24-.07 1.61-.07 4.76s.01 3.52.07 4.76c.05 1.15.24 1.77.4 2.19.22.55.47.94.88 1.35.41.41.8.66 1.35.88.42.16 1.04.35 2.19.4 1.24.06 1.61.07 4.76.07s3.52-.01 4.76-.07c1.15-.05 1.77-.24 2.19-.4.55-.22.94-.47 1.35-.88.41-.41.66-.8.88-1.35.16-.42.35-1.04.4-2.19.06-1.24.07-1.61.07-4.76s-.01-3.52-.07-4.76c-.05-1.15-.24-1.77-.4-2.19a3.6 3.6 0 0 0-.88-1.35 3.6 3.6 0 0 0-1.35-.88c-.42-.16-1.04-.35-2.19-.4-1.24-.06-1.61-.07-4.76-.07zm0 2.76a5.3 5.3 0 1 1 0 10.6 5.3 5.3 0 0 1 0-10.6zm0 1.62a3.68 3.68 0 1 0 0 7.36 3.68 3.68 0 0 0 0-7.36zm5.5-.16a1.24 1.24 0 1 1-2.48 0 1.24 1.24 0 0 1 2.48 0z"/></svg></a>
+        </div>
+      </div>
+    </footer>
   </div>
   <!-- ====== BODY-ONLY EMBEDDABLE CONTENT ENDS ====== -->
 
